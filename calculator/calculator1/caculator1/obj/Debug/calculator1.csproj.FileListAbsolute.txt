@@ -1,0 +1,10 @@
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\bin\Debug\caculator1.exe.config
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\bin\Debug\caculator1.exe
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\bin\Debug\caculator1.pdb
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\calculator1.csprojAssemblyReference.cache
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\caculator1.Form1.resources
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\caculator1.Properties.Resources.resources
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\calculator1.csproj.GenerateResource.cache
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\calculator1.csproj.CoreCompileInputs.cache
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\caculator1.exe
+E:\大二下\软件构造基础\课程作业\计算器\calculator\calculator1\caculator1\obj\Debug\caculator1.pdb
