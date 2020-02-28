@@ -1,0 +1,14 @@
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\bin\Debug\ConsoleApp2.exe
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.csprojAssemblyReference.cache
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.exe
+C:\Users\李国鹏\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.pdb
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\bin\Debug\ConsoleApp2.exe
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.csprojAssemblyReference.cache
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.exe
+E:\大二下\软件构造基础\课程作业\求一个整数的素数因子\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.pdb
