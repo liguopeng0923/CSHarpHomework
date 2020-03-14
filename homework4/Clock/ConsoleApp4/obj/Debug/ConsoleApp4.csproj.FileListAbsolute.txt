@@ -1,0 +1,14 @@
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\bin\Debug\ConsoleApp4.exe.config
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\bin\Debug\ConsoleApp4.exe
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\bin\Debug\ConsoleApp4.pdb
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.csprojAssemblyReference.cache
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.csproj.CoreCompileInputs.cache
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.exe
+C:\Users\李国鹏\source\repos\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.pdb
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\bin\Debug\ConsoleApp4.exe.config
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\bin\Debug\ConsoleApp4.exe
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\bin\Debug\ConsoleApp4.pdb
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\obj\Debug\ConsoleApp4.csprojAssemblyReference.cache
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\obj\Debug\ConsoleApp4.csproj.CoreCompileInputs.cache
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\obj\Debug\ConsoleApp4.exe
+E:\大二下\软件构造基础\课程作业\4\Clock\ConsoleApp4\obj\Debug\ConsoleApp4.pdb
