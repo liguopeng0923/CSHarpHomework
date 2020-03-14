@@ -16,7 +16,6 @@ namespace ConsoleApp4
         {
             Clock myClock = new Clock(0, 0, 0);
             myClock.setAlarm(0, 0, 10);
-            myClock.setAlarm(0, 0, 20);
             myClock.start();
         }
     }

@@ -15,11 +15,11 @@ namespace ConsoleApp4
         private int minutes;
         private int seconds;
 
-        public Clock(int hour, int minute, int second)
+        public Clock(int hours, int minutes, int seconds)
         {
-            this.hours = hour;
-            this.minutes = minute;
-            this.seconds = second;
+            this.hours = hours;
+            this.minutes = minutes;
+            this.seconds = seconds;
             OnTick += timePass;
             OnAlarm += toAlarm;
         }
@@ -34,7 +34,9 @@ namespace ConsoleApp4
                 for (int i = 0; i < AlarmlList.Count; i++)
                 {
                     if (AlarmlList[i].ToAlarm(this.hours, this.minutes, this.seconds))
+                    {
                         OnAlarm();
+                    }
                 }
             }
         }

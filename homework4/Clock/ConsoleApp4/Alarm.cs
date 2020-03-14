@@ -19,9 +19,12 @@ namespace ConsoleApp4
         }
         public bool ToAlarm(int h, int m, int s)
         {
-            if (hours == h && minutes == m && seconds == s)
+            if (hours == h && minutes == m && seconds == s) {
                 return true;
-            return false;
+            }
+            else {
+                return false;
+            }
         }
     }
 
