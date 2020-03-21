@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp1//未进行用户空值输入处理
 {
     class Program
     {
@@ -23,7 +23,7 @@ namespace ConsoleApp1
                     case "1":
                         {
                             Console.WriteLine("请输入用户ID，回车后输入姓名");
-                            Guests guest1 = new Guests(int.Parse(Console.ReadLine()), Console.ReadLine());
+                            Guests guest1 = new Guests( int.Parse(Console.ReadLine()),Console.ReadLine());
                             do
                             {
                                 Console.WriteLine("分三行依次输入需要购买的商品ID，名称，价格");
@@ -36,18 +36,18 @@ namespace ConsoleApp1
                                     Console.WriteLine("分三行依次输入需要购买的商品ID，名称，价格");
                                     Commodity commodity = new Commodity(int.Parse(Console.ReadLine()), Console.ReadLine(), double.Parse(Console.ReadLine()));
                                     orderItem.purchaseItem(commodity);
-                                    Console.WriteLine("仍需购买请输入1，否则输入0");
+                                    Console.WriteLine("仍需购买请输入1，否则输入任意键");
                                 }
                                 orderItem.toString();
                                 orderService.Add(orderItem);
-                                Console.WriteLine("仍需添加订单请输入1，否则输入0");
+                                Console.WriteLine("仍需添加订单请输入1，否则输入任意键");
                             } while (Console.ReadLine() == "1");
                             Order1.toString();
                             break;
                         }
                     case "2":
                         {
-                            Console.WriteLine("需删除请输入1，否则输入0");
+                            Console.WriteLine("需删除请输入1，否则输入任意键");
                             while (Console.ReadLine() == "1")
                             {
                                 Console.WriteLine("输入需要删除的订单号");
@@ -76,7 +76,7 @@ namespace ConsoleApp1
                         }
                     case "3":
                         {
-                            Console.WriteLine("需更改请输入1，否则输入0");
+                            Console.WriteLine("需更改请输入1，否则输入任意键");
                             while (Console.ReadLine() == "1")
                             {
                                 Console.WriteLine("输入需要更改的订单号");
@@ -91,13 +91,13 @@ namespace ConsoleApp1
                                             Guests guest1 = new Guests(int.Parse(Console.ReadLine()), Console.ReadLine());
                                             Commodity commodity1 = new Commodity(int.Parse(Console.ReadLine()), Console.ReadLine(), double.Parse(Console.ReadLine()));
                                             OrderItem orderItem = new OrderItem(OrderID, commodity1, guest1);
-                                            Console.WriteLine("仍需加入商品请输入1，否则输入0");
+                                            Console.WriteLine("仍需加入商品请输入1，否则输入任意键");
                                             while (Console.ReadLine() == "1")
                                             {
                                                 Console.WriteLine("请依次输入商品ID，名称，价格");
                                                 Commodity commodity2 = new Commodity(int.Parse(Console.ReadLine()), Console.ReadLine(), double.Parse(Console.ReadLine()));
                                                 orderItem.purchaseItem(commodity2);
-                                                Console.WriteLine("仍需加入商品请输入1，否则输入0");
+                                                Console.WriteLine("仍需加入商品请输入1，否则输入任意键");
                                             }
                                             orderItem.toString();
                                             orderService.Alter(orderItem);
@@ -141,14 +141,13 @@ namespace ConsoleApp1
                                     {
                                         orderService.Sort(); break;
                                     }
+                                    
                             }
-                            
                             break;
                         }
-                    default: Console.WriteLine("请输入：0-退出应用，1-添加订单，2-删除订单，3-修改订单，4-查询订单"); break;
                 }
-                Console.WriteLine("请输入：0-退出应用，1-新的操作");
-            } while (Console.ReadLine() == "1");
+                Console.WriteLine("请输入：0-退出应用，其他任意键-新的操作");
+            } while (Console.ReadLine() != "0");
         }
     }
 }

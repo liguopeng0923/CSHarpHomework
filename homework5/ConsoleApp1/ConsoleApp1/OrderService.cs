@@ -14,10 +14,23 @@ namespace ConsoleApp1
 
         public void Add(OrderItem orderItem)
         {
+            bool judge = true;
             try
             {
-                Order1.OrderList.Add(orderItem);
-               
+                foreach(OrderItem x in Order1.OrderList)
+                {
+                    if (x.OrderId1 == orderItem.OrderId1)
+                    {
+                        Console.WriteLine("此订单已存在,无法进行对同一订单号的添加");
+                        judge = false;
+                    }
+                    
+                }
+                if (judge)
+                {
+                    Order1.OrderList.Add(orderItem);
+                }
+                
             }
             catch (Exception e)
             {
@@ -28,7 +41,7 @@ namespace ConsoleApp1
         {
             try
             {
-              Order1.OrderList.Remove(orderItem);
+                        Order1.OrderList.Remove(orderItem);
             }
             catch (Exception e)
             {
@@ -72,11 +85,14 @@ namespace ConsoleApp1
                     {
                         return true;
                     }
-                    return false;
                 }
                 return false;
             });
-            foreach (OrderItem a in orderItem)
+            var ordeItem2 = orderItem.OrderBy(s =>
+            {
+                return s.TotalPrice;
+            });
+            foreach (OrderItem a in ordeItem2)
             {
                 Console.WriteLine("下一条同类型数据");
                 a.toString();
