@@ -1,0 +1,80 @@
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.pdb
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.pdb
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe.config
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csprojAssemblyReference.cache
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CoreCompileInputs.cache
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CopyComplete
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.dll
+E:\大二下\homework5\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe.config
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csprojAssemblyReference.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CoreCompileInputs.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CopyComplete
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.pdb
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.pdb
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.pdb
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe.config
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CopyComplete
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.dll
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\ConsoleApp1Tests.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\ConsoleApp1.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\ConsoleApp1.exe.config
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csprojAssemblyReference.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CoreCompileInputs.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.csproj.CopyComplete
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.dll
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\ConsoleApp1Tests\obj\Debug\ConsoleApp1Tests.pdb

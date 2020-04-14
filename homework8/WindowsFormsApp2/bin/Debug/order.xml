@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ArrayOfOrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OrderItem>
+    <OrderId1>3</OrderId1>
+    <Guests>
+      <GuestId>3</GuestId>
+      <GuestName>3</GuestName>
+    </Guests>
+    <CommoditiesList>
+      <Commodity>
+        <CommodityId>3</CommodityId>
+        <CommodityName>3</CommodityName>
+        <CommodityValue>3</CommodityValue>
+      </Commodity>
+    </CommoditiesList>
+    <TotalPrice>3</TotalPrice>
+    <GuestName>3</GuestName>
+  </OrderItem>
+</ArrayOfOrderItem>

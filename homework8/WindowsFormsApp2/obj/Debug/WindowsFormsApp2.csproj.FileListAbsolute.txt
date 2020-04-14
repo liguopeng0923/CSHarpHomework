@@ -1,0 +1,45 @@
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csprojAssemblyReference.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\ConsoleApp1.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\ConsoleApp1.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\ConsoleApp1.exe.config
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.addOrderForm.resources
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.mainForm.resources
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CopyComplete
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\ConsoleApp1.pdb
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\ConsoleApp1.exe.config
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.addOrderForm.resources
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.mainForm.resources
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CopyComplete
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\bin\Debug\ConsoleApp1.exe
+\\vmware-host\Shared Folders\下载\homework6\ConsoleApp1\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csprojAssemblyReference.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\bin\Debug\ConsoleApp1.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\bin\Debug\ConsoleApp1.pdb
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\bin\Debug\ConsoleApp1.exe.config
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csprojAssemblyReference.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.addOrderForm.resources
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.mainForm.resources
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CopyComplete
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+C:\Users\李国鹏.DESKTOP-GAGLR2D\Desktop\新建文件夹\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
