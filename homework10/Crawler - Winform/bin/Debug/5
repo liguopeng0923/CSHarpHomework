@@ -1,0 +1,717 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin" />
+    <meta property="og:description" content="概述 领域驱动设计也就是3D（Domain-Driven Design)已经有了10年的历史，我相信很多人或多或少都听说过这个名词，但是有多少人真正懂得如何去运用它，或者把它运用好呢？于是有人说，DD" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>初探领域驱动设计（1）为复杂业务而生 - 腾飞（Jesse) - 博客园</title>
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=KCO3_f2W_TC__-jZ7phSnmoFkQuWMJH2yAgA16eE3eY" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simplememory/bundle-simplememory.min.css?v=OL4qeo1LNGlN1rKIhv5UctANvt0M6Nx6kLzr_ffx3Xk" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/jesse2013/custom.css?v=DB/sw3iTGnXC/2h0J9yhKcfI5&#x2B;k=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/SimpleMemory/bundle-SimpleMemory-mobile.min.css" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/jesse2013/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/jesse2013/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/jesse2013/wlwmanifest.xml" />
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=98Fvfd6UZH20B_MF08daNaODjSu879MVR9RHmyvWAlg"></script>
+    <script>
+        var currentBlogId = 159331;
+        var currentBlogApp = 'jesse2013';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var skinName = 'SimpleMemory';
+    </script>
+    
+    
+    
+</head>
+<body>
+    <a name="top"></a>
+    <div id="page_begin_html">
+        <link rel="stylesheet" type="text/css" href="https://files.cnblogs.com/jesse2013/mystle.css?v=10132013.10">
+    </div>
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/jesse2013/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/jesse2013/">腾飞（Jesse）</a>
+</h1>
+<h2>
+
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/jesse2013/">
+首页</a>
+</li>
+<li>
+
+
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E8%85%BE%E9%A3%9E%EF%BC%88Jesse%29">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/jesse2013/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+46&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+3661</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/jesse2013/p/the-first-glance-of-ddd.html">初探领域驱动设计（1）为复杂业务而生</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <h2>概述</h2>
+<p>　　领域驱动设计也就是3D（Domain-Driven Design)已经有了10年的历史，我相信很多人或多或少都听说过这个名词，但是有多少人真正懂得如何去运用它，或者把它运用好呢？于是有人说，DDD和TDD这些玩意是一些形而上的东西，只是一茶余饭后的谈资，又或是放到简历上提升逼格而已。前面这句话我写完之后犹豫了，犹豫要不要把它删掉，因为它让我看起来像个喷子，我确实感到不解，为什么别人10年前创造总结出来的东西，我们在10年之后对它的理解还处于这么低的一个层次。开篇就说远了，我也是最近才开始认真学习领域驱动设计，并且得到了园子里面<a href="http://www.cnblogs.com/netfocus/" target="_blank">netfocus</a>,<a href="http://home.cnblogs.com/liubiaocai/" target="_blank">刘标才</a>和<a href="http://home.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a>的帮助，在此再次表示感谢。希望能和大家一起把DDD普及下去。</p>
+<p>　　我们之前有一个<a href="http://home.cnblogs.com/group/topic/70961.html" target="_blank">关于领域驱动设计的讨论</a>，另外<a href="http://www.cnblogs.com/daxnet/" target="_blank">dax.net</a>也有一个关于领域驱动设计的系列写得不错，有兴趣的同学可以看看。本文会以一个初学者的角度来讲解DDD，让我们一切从零开始，我相信你跟我一样也会爱上它的。</p>
+<p>　　本篇主要讨论一下为什么我们要用DDD，它能够为我们带来什么？</p>
+<h2>领域驱动系列</h2>
+<p>　　初探领域驱动设计（1）为复杂业务而生<br />　　初探领域驱动设计（2）EF 和 Repository<br />　　初探领域驱动设计（3）写好单元测试<br />　　......</p>
+<h2>目录</h2>
+<ul>
+<li><a href="#do-we-need-good-design">一点废话，我们需要好的设计么</a>？</li>
+<li><a href="#thinking-standon-business">从设计阶段出发 - 站在业务的角度思考问题</a>
+<ul>
+<li><a href="#entity-valueobject-domainservice">建模：区分实体、值对象和领域服务</a></li>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li><a href="#aggregation">厘清业务关系 - 聚合与聚合根</a></li>
+<li><a href="#Layers-UnitTesting">独立领域业务层 - 高内聚，低耦合，可测试</a></li>
+<li><a href="#The-clean-code">干净漂亮的代码</a></li>
+<li><a href="#summary">小结</a></li>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<h1><a name="do-we-need-good-design"></a>一点废话 ，我们需要好的设计么？</h1>
+<p>　　当我们学习一些设计模式或者框架的时候，总有人会站出来和你说&ldquo;这些都没有用，只要能实现功能就行了。&rdquo; 在这里并非针对某个人，实际上我认为他们说的是对的，在<strong>资源有限</strong>的情况下，我们为了完成项目的交付，这是我们最好的选择。但是别忘了，欠下的债总是要还的，以实现功能为导向的项目务必会造成维护性的大大降低，如果只是一个临时随便用用的东西倒是可以一试，但如果是要长期进行更新的产品，那后期就会拖该产品的后腿。</p>
+<p>　　我们团队现在维护着一个有着20多年历史的产品，该产品是一个酒店、餐饮行业的POS系统，在美国和亚太地区都占有着比较大的市场份额。该产品从C，C++，VB6一路更新，直到现在的C#，但是很可惜不是整体替换，而是局部的，所以现在项目里面这4种代码全都有。可能你会觉得这玩的是混搭，是潮流，但事实是，一旦产品上线之后，会有很多的新功能，老bug等在那里，再加上&ldquo;重市场轻技术&rdquo;的高层在那里制订战略，你压根就没有时间或者没有多少时间去重构。日积月累，等着你的就是每一次改代码都如履薄冰，一不小心就因为改一个bug而整出好几个新bug出来，前不久我们为了新版本的发布就停下所有开发的任务，大家集体花了1个月的时间去做回归测试了。因为前期发布新版本之后bug太多，所以这次老大们都不敢轻易发布了。:)</p>
+<p>　　这是我们血的教训，如果你前期只顾开发功能，最后就会让你很难再开发新功能。所以真诚的希望大家不要再片面的说&ldquo;只要实现功能就可以了！&rdquo;，软件开发的领域这么大，我们没有必要把自己局限在某一个框框里面。对于大型系统来说，我们要学习的地方还有很多：</p>
+<ul>
+<li>组织良好、可阅读性高的代码可以让其它开发人员很容易的开始去修改代码。</li>
+<li>低耦合，高内聚 - 适合运用设计模式以及原则来设计一些好的框架可以降低修改代码引发新bug的风险。</li>
+<li>良好的单元测试以及集成测试可以及时的帮助我们检测新增或修改的代码是否会破坏原有的逻辑。</li>
+<li>自动化测试绝对是省时省力的好帮手，也是项目质量的保证。</li>
+<li>持续集成可以帮助我们更快速安全的进行迭代。</li>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p>　　上面说了这么多也没有提到DDD，那么为什么它能够在构建复杂系统的时候有优势呢？我们可以从以下几个点去思考：</p>
+<ul>
+<li>从设计阶段出发，站在业务的角度思考问题</li>
+<li>厘清业务主次</li>
+<li>独立领域业务层，打通开发和测试阶段</li>
+<li>干净的代码</li>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<h1><a name="thinking-standon-business"></a>从设计阶段开始，站在业务的角度思考问题</h1>
+<p>　　除了DDD，现在还流行另外一个词汇TDD。但是不知道大家有没有注意到DDD（Domain-Driven Design)中的D代表着设计，而TDD(Test-Driven Development)中的D代表着开发，你有没有曾几何时把领域驱动<strong>设计</strong>说成领域驱动开发呢？当然我们确实是可以根据领域驱动来开发，但是DDD被设计出来的完美初衷却是设计。TDD强调的已经是开发了，要求开发人员先写单元测试然后再通过不断的迭代重构让单元测试通过，以此来实现功能。这样做的好处是强迫让开发人员清楚正确的理解<strong>需求</strong>，要知道这年头没有正确理解需求就开始写代码的程序员大有人在，并且我不认为<strong>需求</strong>就是<strong>业务，</strong>需求已经是将本来的业务理解之后，转化为了通过计算机可以实现的一些功能定义，通常是业务分析师或者项目经理会去完成这个工作。而DDD中的D（领域）更像是本来的业务，所以在领域驱动设计的时候，开发人员或者架构师直接与领域专家（或者说客户）进行沟通来建模，这些业务模型也是以后开发人员进行设计和实现的依据。</p>
+<p>　　领域模型被当作开发人员之间，开发人员与领域专家之间沟通的桥梁，这样可以闭免开发人员用错误的方式去实现功能。实际上很多优秀的开发人员，都会很自然的将现实世界中的问题进行抽象，然后用计算机的语言表示出来，我们称之为面向对象。但是由于缺少亲临其境的体验，往往会离真实的业务模型有一些距离。</p>
+<p>　　我们举一个例子来说明一下这个问题，假如我们要开发一个电子商务的网站，这个需求已经非常清楚了，现在那么多的电子商务网站直接照抄一个就可以了。现在我们来做一个下单的功能，来看看怎么去实现 。</p>
+<p>　　作为一个高级程序员，我们得用面向对象的方式去开发，先建类。于是我们有了用户，订单，订单项的类，用户创建订单然后往订单里面添加商品，添加订单项的时候为了方便，我们只需要传入产品ID和数量就可以了，于是Order类有一个AddItem的方法。<img src="https://images0.cnblogs.com/blog/554526/201408/312125452981623.png" alt="" /></p>
+<p>　　作为一个高级程序员，一看这图感觉很完美，有木有？ 好，下面开始实现AddItem方法。</p>
+<p><img src="https://images0.cnblogs.com/blog/554526/201408/312133180016186.png" alt="" /></p>
+<p>　　Order里面是一个OrderItem的集合，而这个AddItem的方法接收的是productId，我去哪里搞个Product对象给你？我不可能在这个实体里面直接去查数据库吧？本来是冲着这个技术点想咨询一下大家，后来在小组里面讨论了一下，我恍然大悟，上面的实体就是我从代码的层面去思考想出来的，下单嘛，当然是用户，订单和订单项喽。可是只要去网上买过东西都知道，用户是不会直接往订单里面加东西的，而是先把商品加入购物车，然后再通过&ldquo;结算&rdquo;一次性就根据购物车生成了一张订单，压根没有往订单里面添加订单项的行为。这才是真正的用户行为（领域逻辑）所以后来，我们的实体变成这样了：</p>
+<p><img src="https://images0.cnblogs.com/blog/554526/201408/312158267829677.png" alt="" /></p>
+<p>　　所以业务是这样的：<br />　&nbsp;&nbsp; 未注册用户也可以将商品添加到购物车中，但是不能下订单。<br />　　并且购物车中的商品不能保存起来，用户离开这个网站（一般是关掉浏览器），购物车中的商品就会消失。<br />　　注册用户购物车中的商品可以长期永久保存，通过购物车的&ldquo;结算功能&rdquo;，将购物车中选中的商品转化为订单。<br />　　所以购物车，应该在用户注册的时候就应该创建好，对应我们上面的User实体中的CreatShoppingCart()方法。下面我们先来简单实现一下注册的代码。</p>
+<p><span style="color: #888888;">//User领域实体代码</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('6f2b4cc8-9028-458d-9ce3-08fbd2c3e628')"><img id="code_img_closed_6f2b4cc8-9028-458d-9ce3-08fbd2c3e628" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_6f2b4cc8-9028-458d-9ce3-08fbd2c3e628" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('6f2b4cc8-9028-458d-9ce3-08fbd2c3e628',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_6f2b4cc8-9028-458d-9ce3-08fbd2c3e628" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> RepositoryAndEf.Domain
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> User : BaseEntity
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Name { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;"> 6</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Email { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Password { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;"> 8</span>         <span style="color: #0000ff;">public</span> Guid ShoppingCartId { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">virtual</span> ShoppingCart ShoppingCart { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">10</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">virtual</span> ICollection&lt;Order&gt; Orders { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">11</span> 
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> CreateShoppingCart()
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">14</span>             ShoppingCart = <span style="color: #0000ff;">new</span><span style="color: #000000;"> ShoppingCart
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">16</span>                 Id =<span style="color: #000000;"> Guid.NewGuid(),
+</span><span style="color: #008080;">17</span>                 Customer = <span style="color: #0000ff;">this</span><span style="color: #000000;">,
+</span><span style="color: #008080;">18</span>                 CustomerId =<span style="color: #000000;"> Id,
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">            };
+</span><span style="color: #008080;">20</span> 
+<span style="color: #008080;">21</span>             ShoppingCartId =<span style="color: #000000;"> ShoppingCart.Id;
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">24</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p><span style="color: #888888;">//领域层 UserService.cs代码</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('234535f5-68c0-47f2-b22a-32f12d8bb0af')"><img id="code_img_closed_234535f5-68c0-47f2-b22a-32f12d8bb0af" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_234535f5-68c0-47f2-b22a-32f12d8bb0af" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('234535f5-68c0-47f2-b22a-32f12d8bb0af',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_234535f5-68c0-47f2-b22a-32f12d8bb0af" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> RepositoryAndEf.Domain
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UserService
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">private</span> IRepository&lt;User&gt;<span style="color: #000000;"> _userRepository;
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">public</span> UserService(IRepository&lt;User&gt;<span style="color: #000000;"> userRepsoitory)
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 9</span>             _userRepository =<span style="color: #000000;"> userRepsoitory;
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">11</span> 
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">virtual</span> User Register(<span style="color: #0000ff;">string</span> email, <span style="color: #0000ff;">string</span> name, <span style="color: #0000ff;">string</span><span style="color: #000000;"> password)
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">var</span> user = <span style="color: #0000ff;">new</span><span style="color: #000000;"> User
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">16</span>                 Id =<span style="color: #000000;"> Guid.NewGuid(),
+</span><span style="color: #008080;">17</span>                 Email =<span style="color: #000000;"> email,
+</span><span style="color: #008080;">18</span>                 Name =<span style="color: #000000;"> name,
+</span><span style="color: #008080;">19</span>                 Password =<span style="color: #000000;"> password
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">            };
+</span><span style="color: #008080;">21</span> 
+<span style="color: #008080;">22</span> <span style="color: #000000;">            user.CreateShoppingCart();
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">            _userRepository.Insert(user);
+</span><span style="color: #008080;">24</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> user;
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">27</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p><span style="color: #888888;">//应用层 UserService.cs代码</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('776099f2-2677-413e-818c-6e35b7e4ce6f')"><img id="code_img_closed_776099f2-2677-413e-818c-6e35b7e4ce6f" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_776099f2-2677-413e-818c-6e35b7e4ce6f" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('776099f2-2677-413e-818c-6e35b7e4ce6f',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_776099f2-2677-413e-818c-6e35b7e4ce6f" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> RepositoryAndEf.Service
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UserService : IUserService
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">protected</span><span style="color: #000000;"> Domain.UserService DomainuUserService
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 7</span>             <span style="color: #0000ff;">get</span>
+<span style="color: #008080;"> 8</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;"> 9</span>                 <span style="color: #0000ff;">return</span> EngineContext.Current.Resolve&lt;Domain.UserService&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">12</span> 
+<span style="color: #008080;">13</span>         <span style="color: #0000ff;">public</span> User Register(<span style="color: #0000ff;">string</span> email, <span style="color: #0000ff;">string</span> name, <span style="color: #0000ff;">string</span><span style="color: #000000;"> password)
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">15</span>             <span style="color: #0000ff;">var</span> user =<span style="color: #000000;"> DomainuUserService.Register(email, name, password);
+</span><span style="color: #008080;">16</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> user;
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">19</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　上面是我们一次建模的过程，是一个将业务转变成代码，将现实世界抽象成软件世界的过程。我们需要画出模型不断的与业务人员（领域专家）去沟通，然后不断的重构去完善我们的模型，以至于这个模型能最准确的反映真实的业务。这是在最开始的设计阶段，是需求沟通阶段就需要做的工作，并且会一直贯穿我们后面的开发甚至维护阶段，没有人可以一开始就把领域模型建的100%准确，需求是复杂的，并且需求还是随时变化的，所以模型也会一直发生改变。它将作为开发人员与业务人员、测试人员以及开发人员自己之间沟通的桥梁。而DDD与其它方法论的区别之处就在于，它还提供了一整套的体系来保证后续对领域模型的重构不会让系统变得四分五裂，比如架构分层，仓储，依懒注入等等，我们后面再慢慢探讨。</p>
+<p>　　 在DDD中，领域模型分为三种：</p>
+<ol>
+<li>实体</li>
+<li>值对象</li>
+<li>领域服务</li>
+</ol>
+<h2><a name="entity-valueobject-domainservice"></a>区分实体、值对象和领域服务</h2>
+<p>　　我们不打算去解释以上的概念，我相信只要你搜索一下就可以得到很全面准确的答案。但是重要的是我们一定要理解3者之间的区别，什么时候是实体，什么时候是值对象，又是什么时候我们该用领域服务呢？我想这是刚接触DDD的人都难免会有些纠结的地方吧，在这里就强调一下。</p>
+<p>　　实体相对于值对象而言拥有&ldquo;<strong>标识</strong>&rdquo;的概念，<strong>标识</strong>可以让我们持续性的跟踪实体。标识和数据库里面的&ldquo;<strong>主键</strong>&rdquo;是不一样的概念，<strong>主键</strong>是技术上的概念，但是<strong>标识</strong>是业务上的概念。</p>
+<p>　　在我们上面的例子中用户ID是标识，我们用它来持续性的跟踪我们的用户。订单ID是标识，我们用它来持续性的跟踪订单，同时我们的用户和订单都是有着不同的状态。但是对于用户的地址来说，我们用什么来做标识呢？在电子商务网站这样的业务里面，我们不需要去持续的跟踪这个地址信息，它在我们的系统里面也不会有着像订单从&ldquo;创建&rdquo;、&ldquo;已付款&rdquo;、&ldquo;已发货&rdquo;、&ldquo;已收货&rdquo;等这样的状态，所以地址信息的我们系统中就是一个值对象。</p>
+<p>　　但是我们如果换了一个系统，比如说死慢的长城宽带，他们把地址作为跟踪对象。同一个地址，谁都可以去注册，但是同一个时间只允许一个人去注册，那么这个地址对于长城宽带来说就去要去持续性的跟踪，有&ldquo;开户&rdquo;，&ldquo;销户&rdquo;的状态。那么地址信息对于长城宽带来说就是一个实体。</p>
+<p>　　解决完实体和值对象，领域服务就好说了，一些重要的领域操作，既不属于实体也不属于值对象，那就可以把它放到服务中了。比如说我们上面的领域服务UserService里面的注册操作，注册这个操作可以说就是将这个用户保存到我们的系统中。在注册之间，这个用户是不存在的，我们又怎么能把注册这个操作放到User实体中去呢？所以把它放到领域服务中成了我们最好的选择。</p>
+<p>　　即使是这样，哪些操作应该放到领域服务中对于很多初学者来说还是一件比较难选择的问题。也许只有慢慢的对业务越来越了解，对DDD应用的越来越熟，我们就会少一点纠结。</p>
+<h1><a name="aggregation"></a>厘清业务主次-聚合与聚合根</h1>
+<p>　　在上面的模型中，我们有很多关系的存在：用户-购物车（1对1），用户-订单-订单项-产品（1对多，1对1），购物车-购物车项-产品等。在DDD中，我们把这样多个模型用关联串起来组成一个<strong>聚合(aggregation)</strong>。</p>
+<p><img src="https://images0.cnblogs.com/blog/554526/201409/042044424225880.png" alt="" /></p>
+<p>　　在我们的模型中，购物车-购物车项是一个聚合，订单-订单项是一个聚合<strong>。</strong>我们通常需要保护这些聚合的一致性，比如说我们把一个订单删掉了，那么这个订单的订单项也需要一起删除，否则他们存在也没有任何的意义。以前我们还会用到触发器，但是大家都知道这个东西维护起来比较麻烦，写起来也不方便等，所以后来大家都是在代码中来控制。但是一直没有一个好的约束说我们如何去更好的控制这些一致性，代码一直都很散乱，直到DDD，我们有了聚合和聚合根的概念，<strong>&ldquo;我们通过为每一个聚合选择一个根，并通过根来控制所有对边界内的对象的访问。外部对象只能持有根的引用；由于根控制了访问，因此我们无法绕过它去修改内部元素。</strong>我们后面还会说到只能为根来建立Repository，这也是为了确保我们这里面讲的数据的一致性。</p>
+<p>　　在我们上面的聚合中，只能通过购物车实体来操作购物车项，而不能你自己写一个保存的方法直接就把购物车项给保存到数据库中去了。这就是聚合和聚合根起到的作用。我们来看一下我们购物车实体的代码：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('359acdb9-9d04-47d9-bd06-cd4e5202a606')"><img id="code_img_closed_359acdb9-9d04-47d9-bd06-cd4e5202a606" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_359acdb9-9d04-47d9-bd06-cd4e5202a606" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('359acdb9-9d04-47d9-bd06-cd4e5202a606',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_359acdb9-9d04-47d9-bd06-cd4e5202a606" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> RepositoryAndEf.Domain
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> ShoppingCart : BaseEntity
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">public</span><span style="color: #000000;"> ShoppingCart()
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 7</span>             Items = <span style="color: #0000ff;">new</span> List&lt;ShoppingCartItem&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 9</span> 
+<span style="color: #008080;">10</span>         <span style="color: #0000ff;">#region</span> Properties
+<span style="color: #008080;">11</span> 
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">public</span> Guid CustomerId { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">13</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">virtual</span> User Customer { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">14</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">virtual</span> ICollection&lt;ShoppingCartItem&gt; Items { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span>         <span style="color: #0000ff;">#endregion</span>
+<span style="color: #008080;">17</span> 
+<span style="color: #008080;">18</span>         <span style="color: #0000ff;">#region</span> Methods
+<span style="color: #008080;">19</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> AddItem(Product product, <span style="color: #0000ff;">int</span><span style="color: #000000;"> quantity)
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">21</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 如果该产品ID已经存在于购物车中，我们直接更改数量即可</span>
+<span style="color: #008080;">22</span>             <span style="color: #0000ff;">var</span> repetitiveCartItem =<span style="color: #000000;"> Items.FirstOrDefault(
+</span><span style="color: #008080;">23</span>                 i =&gt; i.ProductId ==<span style="color: #000000;"> product.Id);
+</span><span style="color: #008080;">24</span> 
+<span style="color: #008080;">25</span>             <span style="color: #0000ff;">if</span> (repetitiveCartItem != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">27</span>                 repetitiveCartItem.Quantity +=<span style="color: #000000;"> quantity;
+</span><span style="color: #008080;">28</span>                 <span style="color: #0000ff;">return</span><span style="color: #000000;">;
+</span><span style="color: #008080;">29</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">30</span> 
+<span style="color: #008080;">31</span>             Items.Add(<span style="color: #0000ff;">new</span><span style="color: #000000;"> ShoppingCartItem
+</span><span style="color: #008080;">32</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">33</span>                 Product =<span style="color: #000000;"> product,
+</span><span style="color: #008080;">34</span>                 ProductId =<span style="color: #000000;"> product.Id,
+</span><span style="color: #008080;">35</span>                 Quantity =<span style="color: #000000;"> quantity,
+</span><span style="color: #008080;">36</span> <span style="color: #000000;">            });
+</span><span style="color: #008080;">37</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">38</span>             
+<span style="color: #008080;">39</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 更改购物车数量</span>
+<span style="color: #008080;">40</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> ChangeProductQuantity(Guid productId, <span style="color: #0000ff;">int</span><span style="color: #000000;"> newQuantity)
+</span><span style="color: #008080;">41</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">42</span>             <span style="color: #0000ff;">var</span> items = Items <span style="color: #0000ff;">as</span> ICollection&lt;ShoppingCartItem&gt;<span style="color: #000000;">;
+</span><span style="color: #008080;">43</span>             <span style="color: #0000ff;">var</span> existingCartItem =<span style="color: #000000;"> items.FirstOrDefault(
+</span><span style="color: #008080;">44</span>                 i =&gt; i.ProductId ==<span style="color: #000000;"> productId);
+</span><span style="color: #008080;">45</span> 
+<span style="color: #008080;">46</span>             <span style="color: #0000ff;">if</span> (existingCartItem == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">47</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">48</span>                 <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> InvalidOperationException(
+</span><span style="color: #008080;">49</span>                     <span style="color: #800000;">"</span><span style="color: #800000;">Cannot find the product in shopping cart</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">50</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">51</span>             existingCartItem.Quantity =<span style="color: #000000;"> newQuantity;
+</span><span style="color: #008080;">52</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">53</span> 
+<span style="color: #008080;">54</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 从购物车中移除该产品</span>
+<span style="color: #008080;">55</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> RemoveItem(Guid productId)
+</span><span style="color: #008080;">56</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">57</span>             <span style="color: #0000ff;">var</span> items = Items <span style="color: #0000ff;">as</span> ICollection&lt;ShoppingCartItem&gt;<span style="color: #000000;">;
+</span><span style="color: #008080;">58</span>             <span style="color: #0000ff;">var</span> existingCartItem =<span style="color: #000000;"> items.FirstOrDefault(
+</span><span style="color: #008080;">59</span>                 i =&gt; i.ProductId ==<span style="color: #000000;"> productId);
+</span><span style="color: #008080;">60</span> 
+<span style="color: #008080;">61</span>             <span style="color: #0000ff;">if</span> (existingCartItem == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">62</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">63</span>                 <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> InvalidOperationException(
+</span><span style="color: #008080;">64</span>                     <span style="color: #800000;">"</span><span style="color: #800000;">Cannot find the product in shopping cart</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">65</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">66</span> 
+<span style="color: #008080;">67</span> <span style="color: #000000;">            items.Remove(existingCartItem);
+</span><span style="color: #008080;">68</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">69</span>         <span style="color: #0000ff;">#endregion</span>
+<span style="color: #008080;">70</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">71</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　大家可以看到我们购物车实体的逻辑很清晰，因为我们很明确购物车拥有哪些操作。当然还有另一种做法即把这些操作都放到用户实体中去，因为最终其实是用户做的这些操作。那我们的聚合就变成了用户-购物车-购物车项，这样也没有什么不可以，反而更符合真实的场景。但是会导致我们的聚合过庞大，也就是说我必须要先有用户实体才能进行操作，用户用户可能会绑上很多的东西：购物车、订单、地址等等。在现在都是ajax来操作的大型网站中，我们需要在服务端把这个用户请求加载出来再执行添加购物车的操作呢？还是可以直接加载购物车实体来操作呢？这就是一个粒度的问题，不同的问题和场景，大家可以区别来对待。总之聚合是可以根据业务或者一些特定需求来做出调整的。比如说购物车-购物车项-产品，这也是一个聚合，但是由于产品的特殊性，我们可以把产品也作为一个聚合根来单独进行访问。</p>
+<p>　　我们来看一下应用层ShoppingCartService的代码：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('6452480f-1a62-48f1-8000-dcef18a2392d')"><img id="code_img_closed_6452480f-1a62-48f1-8000-dcef18a2392d" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_6452480f-1a62-48f1-8000-dcef18a2392d" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('6452480f-1a62-48f1-8000-dcef18a2392d',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_6452480f-1a62-48f1-8000-dcef18a2392d" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> ShoppingCartService : IShoppingCartService
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">private</span> IRepository&lt;ShoppingCart&gt;<span style="color: #000000;"> _shoppingCartRepository;
+</span><span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">private</span> IRepository&lt;Product&gt;<span style="color: #000000;"> _productRepository;
+</span><span style="color: #008080;"> 5</span> 
+<span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">public</span> ShoppingCartService(IRepository&lt;ShoppingCart&gt;<span style="color: #000000;"> shoppingCartRepository,
+</span><span style="color: #008080;"> 7</span>         IRepository&lt;Product&gt;<span style="color: #000000;"> productRepository)
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 9</span>         _shoppingCartRepository =<span style="color: #000000;"> shoppingCartRepository;
+</span><span style="color: #008080;">10</span>         _productRepository =<span style="color: #000000;"> productRepository;
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">12</span> 
+<span style="color: #008080;">13</span>     <span style="color: #0000ff;">public</span> ShoppingCart AddToCart(Guid cartId, Guid productId, <span style="color: #0000ff;">int</span><span style="color: #000000;"> quantity)
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">15</span>         <span style="color: #0000ff;">var</span> cart =<span style="color: #000000;"> _shoppingCartRepository.GetById(cartId);
+</span><span style="color: #008080;">16</span>         <span style="color: #0000ff;">var</span> product =<span style="color: #000000;"> _productRepository.GetById(productId);
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">        cart.AddItem(product, quantity);
+</span><span style="color: #008080;">18</span> 
+<span style="color: #008080;">19</span> <span style="color: #000000;">        _shoppingCartRepository.Update(cart);
+</span><span style="color: #008080;">20</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> cart;
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">22</span> 
+<span style="color: #008080;">23</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;　　此应用层代码一出，大家就会发现，这代码太简洁了，有木有？因为所有的逻辑、业务都被放到领域实体那里面去处理了。即使我们业务逻辑改变了，或者我们需要重构了，它们都在领域实体那里面，改那里就好了。接下来的问题是，如何确保安全，正确的一次又一次的对领域实体进行重构呢？毕竟它也是各种关联，各种依懒呀？您请接着往下看我们的单元测试环节。</p>
+<h1><a name="Layers-UnitTesting"></a>独立领域业务层 - 高内聚，低耦合，可测试</h1>
+<p>　　讲到这里，请允许我从网上盗一张图，当然这张图早就已经是被引用过无数次了，它就是DDD中使用的分层结构。</p>
+<p><img src="https://images0.cnblogs.com/blog/554526/201409/042138567821588.png" alt="" /></p>
+<p>　　关于这个分层，每一层是干什么的，具体怎么玩，大家可以看一下dax的<a href="http://www.cnblogs.com/daxnet/archive/2010/07/07/1772584.html" target="_blank">这一篇文章</a>讲解的很清楚。总之，我们的领域模型以及相关的类比如工厂等会被独立成为一层来与应用层和基础设计层交互。</p>
+<p><img src="https://images0.cnblogs.com/blog/554526/201409/042144328285723.png" alt="" /></p>
+<p>&nbsp;　　领域层是独立的，首先它是应用层的下层，所以肯定不会有对应用层的依懒，但是领域有一些模型或者服务少不了是要与数据库打交道的，比如说我们在注册用户的时候需要去验证当前的邮箱是不是已经被占用了。而这一类操作都是属于基础设施层做的事情，包含像一些数据库操作，日志，缓存等等。那么我们如何避免领域层对基础设施层的依懒呢？感谢面向对象设计 - 面向接口编程，只不过这里面的场景特别有代表性，它是一个非常常见的问题，于是它成为了一个模式：仓储（Repository)。<a name="repository_interface"></a></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('4d22a016-9d14-4b74-878a-be5ee3364e5f')"><img id="code_img_closed_4d22a016-9d14-4b74-878a-be5ee3364e5f" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_4d22a016-9d14-4b74-878a-be5ee3364e5f" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('4d22a016-9d14-4b74-878a-be5ee3364e5f',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_4d22a016-9d14-4b74-878a-be5ee3364e5f" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> RepositoryAndEf.Core.Data
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">partial</span> <span style="color: #0000ff;">interface</span> IRepository&lt;T&gt; <span style="color: #0000ff;">where</span><span style="color: #000000;"> T : BaseEntity
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span>         T GetById(<span style="color: #0000ff;">object</span><span style="color: #000000;"> id);
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span>         IEnumerable&lt;T&gt;<span style="color: #000000;"> Get(
+</span><span style="color: #008080;"> 8</span>             Expression&lt;Func&lt;T, Boolean&gt;&gt;<span style="color: #000000;"> predicate);
+</span><span style="color: #008080;"> 9</span> 
+<span style="color: #008080;">10</span>         <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Insert(T entity);
+</span><span style="color: #008080;">11</span>         <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Update(T entity);
+</span><span style="color: #008080;">12</span>         <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Delete(T entity);
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">14</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　一般情况下，我们会把仓储的接口放到领域层，或者也可以再建一个Core层来作个项目最下面的那一层提供一些最公共的组件部分。关于仓储的代码，大家在上面领域服务UserService中的注册代码中就已经见到过了。可能需要注意的是，Repository用来将数据库与其它的业务和技术分离，所以我们在领域层中使用它，还在应用层中使用它。</p>
+<p>　　Repository让我们专注于模型，不用去考虑持久化的问题。更为重要的一点是，因为它是接口，所以我们可以很方便的替代它，或者模拟一个实现来对我们的领域模型进行单元测试。下面是我们实现的MockRepository的代码：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('c943a52d-e9ec-42b1-adcb-937d297b651d')"><img id="code_img_closed_c943a52d-e9ec-42b1-adcb-937d297b651d" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_c943a52d-e9ec-42b1-adcb-937d297b651d" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('c943a52d-e9ec-42b1-adcb-937d297b651d',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_c943a52d-e9ec-42b1-adcb-937d297b651d" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MockRepository&lt;T&gt;: IRepository&lt;T&gt; <span style="color: #0000ff;">where</span><span style="color: #000000;"> T : BaseEntity
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">private</span> List&lt;T&gt; _list = <span style="color: #0000ff;">new</span> List&lt;T&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span> <span style="color: #0000ff;">public</span><span style="color: #000000;"> T GetById(Guid id)
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">return</span> _list.FirstOrDefault(e =&gt; e.Id ==<span style="color: #000000;"> id);
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 9</span> 
+<span style="color: #008080;">10</span> <span style="color: #0000ff;">public</span> IEnumerable&lt;T&gt; Get(Expression&lt;Func&lt;T, <span style="color: #0000ff;">bool</span>&gt;&gt;<span style="color: #000000;"> predicate)
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">12</span>     <span style="color: #0000ff;">return</span><span style="color: #000000;"> _list.Where(predicate.Compile());
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Insert(T entity)
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">17</span>     <span style="color: #0000ff;">if</span> (GetById(entity.Id) != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">19</span>         <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> InvalidCastException(<span style="color: #800000;">"</span><span style="color: #800000;">The id has already existed</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">21</span> 
+<span style="color: #008080;">22</span> <span style="color: #000000;">    _list.Add(entity);
+</span><span style="color: #008080;">23</span>     <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">25</span> 
+<span style="color: #008080;">26</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Update(T entity)
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">28</span>     <span style="color: #0000ff;">var</span> existingEntity =<span style="color: #000000;"> GetById(entity.Id);
+</span><span style="color: #008080;">29</span>     <span style="color: #0000ff;">if</span> (existingEntity == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">31</span>         <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> InvalidCastException(<span style="color: #800000;">"</span><span style="color: #800000;">Cannot find the entity.</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">32</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">33</span> 
+<span style="color: #008080;">34</span>     existingEntity =<span style="color: #000000;"> entity;
+</span><span style="color: #008080;">35</span>     <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+</span><span style="color: #008080;">36</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">37</span> 
+<span style="color: #008080;">38</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Delete(T entity)
+</span><span style="color: #008080;">39</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">40</span>     <span style="color: #0000ff;">var</span> existingEntity =<span style="color: #000000;"> GetById(entity.Id);
+</span><span style="color: #008080;">41</span>     <span style="color: #0000ff;">if</span> (existingEntity == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">42</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">43</span>         <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> InvalidCastException(<span style="color: #800000;">"</span><span style="color: #800000;">Cannot find the entity.</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">44</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">45</span> 
+<span style="color: #008080;">46</span> <span style="color: #000000;">    _list.Remove(entity);
+</span><span style="color: #008080;">47</span>     <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+</span><span style="color: #008080;">48</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　下面我们给我们User领域实体的注册方法加一个检查Email是否存在的逻辑。</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('8409aa00-c9ee-485f-ab13-3f4a32b7b4af')"><img id="code_img_closed_8409aa00-c9ee-485f-ab13-3f4a32b7b4af" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_8409aa00-c9ee-485f-ab13-3f4a32b7b4af" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('8409aa00-c9ee-485f-ab13-3f4a32b7b4af',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_8409aa00-c9ee-485f-ab13-3f4a32b7b4af" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">virtual</span> User Register(<span style="color: #0000ff;">string</span> email, <span style="color: #0000ff;">string</span> name, <span style="color: #0000ff;">string</span><span style="color: #000000;"> password)
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">if</span> (_userRepository.Get().Any(u =&gt; u.Email ==<span style="color: #000000;"> email))
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> ArgumentException(<span style="color: #800000;">"</span><span style="color: #800000;">email has already existed</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 7</span> 
+<span style="color: #008080;"> 8</span>     <span style="color: #0000ff;">var</span> user = <span style="color: #0000ff;">new</span><span style="color: #000000;"> User
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">10</span>         Id =<span style="color: #000000;"> Guid.NewGuid(),
+</span><span style="color: #008080;">11</span>         Email =<span style="color: #000000;"> email,
+</span><span style="color: #008080;">12</span>         Name =<span style="color: #000000;"> name,
+</span><span style="color: #008080;">13</span>         Password =<span style="color: #000000;"> password
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">    };
+</span><span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span> <span style="color: #000000;">    user.CreateShoppingCart();
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">    _userRepository.Insert(user);
+</span><span style="color: #008080;">18</span>     <span style="color: #0000ff;">return</span><span style="color: #000000;"> user;
+</span><span style="color: #008080;">19</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　在我们真实的Repository出来之前，不管我们是打算是EF，还是NHibernate，我们现在只要对这个Mock的Repository来编程或者进行单元测试就可以了。</p>
+<p style="color: #888888;"><span style="color: #888888;">//UserService领域服务在单元测试</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('edb71a1d-c53c-4e41-93a9-a980c0606b52')"><img id="code_img_closed_edb71a1d-c53c-4e41-93a9-a980c0606b52" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_edb71a1d-c53c-4e41-93a9-a980c0606b52" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('edb71a1d-c53c-4e41-93a9-a980c0606b52',event)" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_edb71a1d-c53c-4e41-93a9-a980c0606b52" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UserServiceTests
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">private</span> IRepository&lt;User&gt; _userRepository = <span style="color: #0000ff;">new</span> MockRepository&lt;User&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span> <span style="color: #000000;">    [Fact]
+</span><span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> RegisterUser_ExpectedParameters_Success()
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 8</span>         <span style="color: #0000ff;">var</span> userService = <span style="color: #0000ff;">new</span><span style="color: #000000;"> UserService(_userRepository);
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">var</span> registeredUser =<span style="color: #000000;"> userService.Register(
+</span><span style="color: #008080;">10</span>             <span style="color: #800000;">"</span><span style="color: #800000;">hellojesseliu@outlook.com</span><span style="color: #800000;">"</span><span style="color: #000000;">, 
+</span><span style="color: #008080;">11</span>             <span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">, 
+</span><span style="color: #008080;">12</span>             <span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">13</span> 
+<span style="color: #008080;">14</span>         <span style="color: #0000ff;">var</span> userFromRepository =<span style="color: #000000;"> _userRepository.GetById(registeredUser.Id);
+</span><span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span>         userFromRepository.Should().NotBe(<span style="color: #0000ff;">null</span><span style="color: #000000;">);
+</span><span style="color: #008080;">17</span>         userFromRepository.Email.Should().Be(<span style="color: #800000;">"</span><span style="color: #800000;">hellojesseliu@outlook.com</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">18</span>         userFromRepository.Name.Should().Be(<span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">19</span>         userFromRepository.Password.Should().Be(<span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">21</span> 
+<span style="color: #008080;">22</span> <span style="color: #000000;">    [Fact]
+</span><span style="color: #008080;">23</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> RegisterUser_ExistedEmail_ThrowException()
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">25</span>         <span style="color: #0000ff;">var</span> userService = <span style="color: #0000ff;">new</span><span style="color: #000000;"> UserService(_userRepository);
+</span><span style="color: #008080;">26</span>         <span style="color: #0000ff;">var</span> registeredUser =<span style="color: #000000;"> userService.Register(
+</span><span style="color: #008080;">27</span>             <span style="color: #800000;">"</span><span style="color: #800000;">hellojesseliu@outlook.com</span><span style="color: #800000;">"</span><span style="color: #000000;">, 
+</span><span style="color: #008080;">28</span>             <span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">, 
+</span><span style="color: #008080;">29</span>             <span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">30</span> 
+<span style="color: #008080;">31</span>         <span style="color: #0000ff;">var</span> userFromRepository =<span style="color: #000000;"> _userRepository.GetById(registeredUser.Id);
+</span><span style="color: #008080;">32</span>         userFromRepository.Should().NotBe(<span style="color: #0000ff;">null</span><span style="color: #000000;">);
+</span><span style="color: #008080;">33</span> 
+<span style="color: #008080;">34</span>         Action action = () =&gt;<span style="color: #000000;"> userService.Register(
+</span><span style="color: #008080;">35</span>             <span style="color: #800000;">"</span><span style="color: #800000;">hellojesseliu@outlook.com</span><span style="color: #800000;">"</span><span style="color: #000000;">, 
+</span><span style="color: #008080;">36</span>             <span style="color: #800000;">"</span><span style="color: #800000;">Jesse_01</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+</span><span style="color: #008080;">37</span>             <span style="color: #800000;">"</span><span style="color: #800000;">Jesse</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">38</span>         action.ShouldThrow&lt;ArgumentException&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">39</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">40</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p style="color: #888888;">&nbsp;　　<span style="color: #000000;">我们用的XUnit.net作单元测试框架，同时用了Fluent Assertions。</span></p>
+<p><img src="https://images0.cnblogs.com/blog/554526/201409/052158196109949.png" alt="" /></p>
+<p>　　结果很漂亮，有木有？有了单元测试来为我们的领域模型保驾护航，我们就可以安全的进行重构了。</p>
+<h1><a name="The-clean-code"></a>&nbsp;干净漂亮的代码</h1>
+<p>　　经常有人说代码是一件艺术，码农都是艺术家。我很喜欢这句话，如果你也认同，那就请像对待艺术品一样对待我们的代码，精心的打磨它。并且你不一定要非常的有经验才可以干这件事情；</p>
+<p>　　如果你刚入行，那至少保证一代码可读性好（好的命名，代码逻辑清晰等）；<br />　　再往上一点，你要能够更好的组织代码（类，函数）；<br />　　等到你也成为专家了，那就开始考虑一些重用性，可扩展性，可维护性，可测试性的这些比较范的东西了；<br />　　而最后就上升到架构层面，考虑系统各个组件之间通讯，分层，等等。最后你就成为码神了。</p>
+<p>　　DDD里面引入的一些思路包括分层、依懒注入、仓储等，可以给我们一些指导，大家从上面的代码也可以看出这些代码组织的很好，逻辑也不会散乱的到处都是。当然这个项目代码量有限，说服力是有限的，后面我们还会尝试去加入应用层的代码。代码已经放到CodePlex上去了：<a href="http://repositoryandef.codeplex.com/" target="_blank">http://repositoryandef.codeplex.com</a><br />欢迎大家Follow。注意代码还没有写完，只是一个初级版本，我们后面会慢慢完善。这个项目会使用EF来作业ORM框架，Autofac作依懒注入容器，用Xunit作单元测试框架的同时引入了Fluent Assertions。</p>
+<h1><a name="summary"></a>小结</h1>
+<p>　　 本文主要介绍了DDD的一些基础概念：</p>
+<ul>
+<li>领域模型：领域实体、领域服务以及值对象；建模一定要从真实的领域业务出发，多与领域专家进行沟通来完善模型。</li>
+<li>聚合与聚合根：它的主要作用是用来确保各种关系下的实体的数据一致性；但是确认聚合根这个过程，实际上也是对业务的梳理过程。</li>
+<li>架构分层： 每一层都职责清楚；依懒于接口来降低耦合。</li>
+<li>封装和测试： 所有的业务都放到领域层，同时对领域层进行单元测试来确保最核心的逻辑不会遭到破坏。</li>
+
+
+
+
+
+</ul>
+<p>　　个人感觉没有必要太强调Repository的概念，从领域实体的生命周期（创建-持久化到数据库-销毁-从数据库重建）你会发现其实这个过程很普遍，并不是只有DDD才有的。所以我认为Repository主要是将数据访问功能给隔离开，避免领域实体对基础设施层的依懒。那它和三层有什么区别？ BLL 引用DAL不也是依懒于接口么？给我的感觉是，DDD的领域实体持久化这一块就是三层里面的思路。这可能是在学习DDD初期的想法，因为真实的大型项目中是不会直接把领域实体给持久化的，那个叫DTO，于是Repository&lt;&gt;里面放的就不是我们的领域实体了，而是将领域实体转换成对应的DTO。&nbsp;</p>
+<p>　　是否一定要使用DTO呢？领域实体和DTO互相转换，最后到了表现层DTO还要和ViewModel转换，会不会带来复杂性和性能上的损失？Repository和EF还有Unit Of Work怎么来协调？抱怨写单元测试么？怎么样让写单元测试不变成只是走过场而已？ 这些问题留给我们后面再解决吧。</p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2014-09-10 08:35</span>&nbsp;
+<a href="https://www.cnblogs.com/jesse2013/">腾飞（Jesse)</a>&nbsp;
+阅读(<span id="post_view_count">...</span>)&nbsp;
+评论(<span id="post_comment_count">...</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=3947742" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(3947742);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/9.12.0/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 159331, cb_blogApp = 'jesse2013', cb_blogUserGuid = 'dfb583e1-aefc-e211-8d02-90b11c0b17d6';
+    var cb_entryId = 3947742, cb_entryCreatedDate = '2014-09-10 08:35', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+    loadSideColumnAd();
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+    </div>
+    <div id="under_post_news"></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        </div>
+    </div>
+    <div id="under_post_kb"></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+
+<div id="sidebar_ad"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2020 腾飞（Jesse)
+<br /><span id="poweredby">Powered by .NET Core on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+</body>
+</html>

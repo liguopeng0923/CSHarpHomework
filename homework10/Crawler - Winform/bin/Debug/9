@@ -1,0 +1,711 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>讨论一下领域驱动设计 - 架构之美 - 小组 - 博客园</title>
+    
+    
+    <link href="//common.cnblogs.com/favicon.ico" rel="shortcut icon" />
+    <link rel="stylesheet" href="/css/home_group.css" asp-append-version="true" />
+    
+    <style type="text/css">
+        #main {
+            width: 800px;
+        }
+
+        .feed_block {
+            margin-top: 0px;
+        }
+
+        .cnblogs-markdown {
+            width: 484px;
+            border-color: #ccc !important;
+        }
+    </style>
+
+    <link rel="stylesheet" media="only screen and (max-device-width: 992px)" href="/css/mobile.css" asp-append-version="true" />
+    <script type="text/javascript" src="//common.cnblogs.com/script/jquery.js"></script>
+    <script type="text/javascript" src="//common.cnblogs.com/script/common.js?id=20121017"></script>
+    <script type="text/javascript" src="/js/home_group.js" asp-append-version="true"></script>
+    
+    <link rel="stylesheet" href="/css/highlight.css" />
+    <script type="text/javascript" src="//common.cnblogs.com/script/jquery.json-1.3.min.js"></script>
+    <script type="text/javascript" src="//common.cnblogs.com/highlight/9.1.0/highlight.min.js"></script>
+    <script type="text/javascript" src="/js/ubb.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var firstPageUrl = $('.pager .p_1').attr('href');
+            $('.pager .p_1').attr('href', firstPageUrl + '?page=1');
+            if ($('.pager .p_2').hasClass('current')) {
+                $('.pager a:first-child').attr('href', $('.pager .p_1').attr('href'));
+            }
+
+            setTimeout(function() {
+                incrementViewCount(70961);
+            }, 200);
+        });
+
+        hljs.initHighlightingOnLoad();
+        function incrementViewCount(postId) {
+            if (postId) {
+                $.ajax({
+                    url: '//count.cnblogs.com/group/thread/' + postId,
+                    type: 'PUT',
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true
+                });
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="top">
+        <div id="top_left">
+            <a href="http://www.cnblogs.com">首页</a><a href="//news.cnblogs.com/">新闻</a><a href="//job.cnblogs.com/">招聘</a><a href="http://zzk.cnblogs.com/">找找看</a><a href="//kb.cnblogs.com/">知识库</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <a href="http://www.cnblogs.com" title="返回博客园首页"><img src="/images/logo_home.gif" alt="logo" /></a>
+            </div>
+            <div id="nav_block">
+                <a href="//home.cnblogs.com/">园子</a> · <a href="//home.cnblogs.com/followees/">关注</a> · <a href="//home.cnblogs.com/followers/">粉丝</a> · <a href="//home.cnblogs.com/feed/all/">随便看看</a> · <a href="//msg.cnblogs.com/" target="_blank">消息<span id="msg_count"></span></a>
+            </div>
+            <div class="clear"></div>
+            <div id="header_user">
+            </div>
+            <script>
+                loadCurrentUserInfo();
+            </script>
+            <div class="clear"></div>
+        </div>
+        <div id="container">
+            <div id="app_bar">
+	<p class="app_r_3"></p><p class="app_r_2"></p><p class="app_r_1"></p>
+	<div id="app_list_wrapper">
+        <ul class="app_list">
+            <li>
+                <img src="//common.cnblogs.com/images/home/ico_ing.gif" alt=""><a id="app_ing" href="//ing.cnblogs.com/">闪存</a><div class="clear"></div>
+            </li>
+            <li>
+                <em><a href="//i.cnblogs.com/" target="_blank">写博</a></em><img src="//common.cnblogs.com/images/home/ico_blog.gif" alt=""><a id="app_blog" href="//home.cnblogs.com/blog/">博客</a>
+            </li>
+            <li>
+                <em><a href="/newpost/">发言</a></em><img src="//common.cnblogs.com/images/home/ico_group.gif" alt=""><a id="app_group" href="/" class="current">小组</a>
+            </li>
+            <li>
+                <em><a href="//news.cnblogs.com/n/publish" target="_blank">投递</a></em><img src="//common.cnblogs.com/images/home/ico_news.gif" alt=""><a id="app_news" href="//home.cnblogs.com/news/">新闻</a>
+            </li>
+            <li>
+                <em><a href="//q.cnblogs.com/q/new" target="_self">提问</a></em><img src="//common.cnblogs.com/images/home/ico_question.gif" alt=""><a id="app_q" href="//q.cnblogs.com/">博问</a>
+            </li>
+            <li>
+                <em><a href="#" target="_blank" onclick="AddToWz();return false;">添加</a></em><img src="//common.cnblogs.com/images/home/ico_bookmark.gif" alt=""><a id="app_wz" href="//wz.cnblogs.com/">收藏</a>
+            </li>
+            <li>
+                <em><a href="//job.cnblogs.com/admin/" target="_blank">发布</a></em><img src="//common.cnblogs.com/images/home/ico_job.gif" alt=""><a id="app_job" href="//home.cnblogs.com/job/">招聘</a>
+            </li>
+            <li>
+                <img src="//common.cnblogs.com/images/home/ico_kb.gif" alt=""><a id="app_kb" href="//home.cnblogs.com/kb/">文库</a>
+            </li>
+        </ul>
+		<div class="app_setting">
+			<a href="/forum/public/" class="flag_edit" target="_blank">问题反馈</a>
+		</div>
+	</div>
+	<p class="app_r_1"></p><p class="app_r_2"></p><p class="app_r_3"></p>
+</div> 
+            <div id="container_content">
+                
+                <div id="main">
+                    <div id="main">
+    <div class="feed_block">
+        <div class="postion_nav"><a href="/">小组</a> / <a href="/103379/">架构之美</a><span class="quick_link_right">&raquo; <a href="/newpost/103379/">新建话题</a></span></div>
+        <ul class="thread_item">
+            <li>
+                <div class="thread_block">
+                    <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                        <img src="//pic.cnblogs.com/face/554526/20131126113744.png" />
+                    </a>
+                    <div class="thread_author_block">
+                        <span class="text_gray" style="float: right; padding-right: 5px;">
+回复:17                            浏览:3362
+                        </span>
+                        <div class="thread_title"><a href="/topic/70961.html" class="black" id="thread_title">讨论一下领域驱动设计</a></div>
+                        <span class="text_green">2014-08-21 10:42</span> 来自 <b><a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a></b>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="thread_content" id="thread_body">
+                        <p>主要有以下几点困惑：</p>
+<p>1. 领域服务需要建接口么？ 好像@netfocus有提到过不需要。</p>
+<p>2. 领域服务里面适合用静态方法么？</p>
+<p>3. 领域服务应该是尽量没有状态的，那里面是不是不应该把领域实体作为私有变量保存起来？</p>
+<p>第2个问题和第3个问题，我举个栗子来说明一下： 我们有Order, OrderItem, Product 3种实体。</p>
+<p>// Order</p>
+<div class="cnblogs_code"><img id="code_img_closed_73a4eb40-d162-472b-8621-baf861d38d13" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_73a4eb40-d162-472b-8621-baf861d38d13" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_73a4eb40-d162-472b-8621-baf861d38d13" class="cnblogs_code_hide">
+<pre><span style="color: #008080">1</span>  <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Order : BaseEntity
+</span><span style="color: #008080">2</span> <span style="color: #000000">{
+</span><span style="color: #008080">3</span>         <span style="color: #0000ff">public</span> Address Address { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+</span><span style="color: #008080">4</span>         <span style="color: #0000ff">public</span> Payment Payment { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+</span><span style="color: #008080">5</span>         <span style="color: #0000ff">public</span> IEnumerable Items { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+</span><span style="color: #008080">6</span>         <span style="color: #0000ff">public</span> User User { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+</span><span style="color: #008080">7</span>  }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// Order Item</p>
+<div class="cnblogs_code"><img id="code_img_closed_65caaa83-3015-4a22-805a-34fcbf2b6ed7" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_65caaa83-3015-4a22-805a-34fcbf2b6ed7" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_65caaa83-3015-4a22-805a-34fcbf2b6ed7" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OrderItem : BaseEntity
+{
+    </span><span style="color: #0000ff">public</span> Product Product { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span> Amount { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// Prodcut</p>
+<div class="cnblogs_code"><img id="code_img_closed_a15671fb-9613-4f42-b40f-de287ed4031b" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_a15671fb-9613-4f42-b40f-de287ed4031b" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_a15671fb-9613-4f42-b40f-de287ed4031b" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Product : BaseEntity
+{
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">string</span> Title { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">decimal</span> Price { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>现在有一个往Order里面插入OrderItem的操作，我们假设有一个需求是想简化UI 的逻辑， 只需要传入ProductId和Amount就可以了。 如果我们把这个操作放在Order实体里面的话，那Order实体就需要调用Repository去把这个Product的实体对象查询出来，我不想这么做，于是我想吧这个操作放到OrderService中。</p>
+<p>// OrderService 第一种做法，在构造的时候需要传入一个Order实体作为参数。</p>
+<div class="cnblogs_code"><img id="code_img_closed_ba4f952d-bba0-4a63-863d-e88012273d26" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_ba4f952d-bba0-4a63-863d-e88012273d26" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_ba4f952d-bba0-4a63-863d-e88012273d26" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OrderService
+{
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> Order _order;
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> IOrderItemFactory _orderItemFactory;
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> OrderService(Order order, IOrderItemFactory orderItemFactory)
+    {
+        _order </span>=<span style="color: #000000"> order;
+        _orderItemFactory </span>=<span style="color: #000000"> orderItemFactory;
+    }
+
+    </span><span style="color: #0000ff">public</span> OrderService AddItem(<span style="color: #0000ff">object</span> productId, <span style="color: #0000ff">int</span><span style="color: #000000"> amount)
+    {
+        </span><span style="color: #0000ff">var</span> item =<span style="color: #000000"> _orderItemFactory.Create(productId, amount);
+        </span><span style="color: #0000ff">var</span> items = _order.Items <span style="color: #0000ff">as</span> ICollection<span style="color: #000000">;
+        items.Add(item);
+        _order.Items </span>=<span style="color: #000000"> items;
+
+        </span><span style="color: #0000ff">return</span> <span style="color: #0000ff">this</span><span style="color: #000000">;
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// OrderService 第二种做法，在AddItem方法中传入Order实体</p>
+<div class="cnblogs_code"><img id="code_img_closed_da7febbe-e4d0-4ffb-9d3b-94cf430dde00" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_da7febbe-e4d0-4ffb-9d3b-94cf430dde00" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_da7febbe-e4d0-4ffb-9d3b-94cf430dde00" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OrderService
+{
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> IOrderItemFactory _orderItemFactory;
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> OrderService(IOrderItemFactory orderItemFactory)
+    {
+        _orderItemFactory </span>=<span style="color: #000000"> orderItemFactory;
+    }
+
+    </span><span style="color: #0000ff">public</span> OrderService AddItem(Order order, <span style="color: #0000ff">object</span> productId, <span style="color: #0000ff">int</span><span style="color: #000000"> amount)
+    {
+        </span><span style="color: #0000ff">var</span> item =<span style="color: #000000"> _orderItemFactory.Create(productId, amount);
+        </span><span style="color: #0000ff">var</span> items = order.Items <span style="color: #0000ff">as</span> ICollection<span style="color: #000000">;
+        items.Add(item);
+        order.Items </span>=<span style="color: #000000"> items;
+
+        </span><span style="color: #0000ff">return</span> <span style="color: #0000ff">this</span><span style="color: #000000">;
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>如果是第二种做法的话，那我们是不是可以不需要new OrderService()的操作了？ 为什么不直接使用静态方法呢？</p>
+<p>@Luminji<br>@<span class="lightblue">田园里的蟋蟀</span></p>
+<p>&nbsp;</p>
+<p><span class="lightblue" style="color: #ff0000">更新于： 2014.08.21 3:45</span></p>
+<p><span class="lightblue" style="color: #ff0000">===================================================================</span></p>
+<p><span class="lightblue">在<span class="lightblue">蟋蟀</span>和netfocus的帮助下，我把思路再重新理了一下。 这个业务应该是这样的： 用户现将商品添加到购物车中，最后通过”结算“ 功能，再根据购物车中的商品来生成订单。</span></p>
+<p><span class="lightblue">我们以下几个实体：</span></p>
+<p><span class="lightblue">// ShoppingCartItem</span></p>
+<div class="cnblogs_code"><img id="code_img_closed_6c37fcf7-dff0-4017-9e92-ac3dc1b356f2" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_6c37fcf7-dff0-4017-9e92-ac3dc1b356f2" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_6c37fcf7-dff0-4017-9e92-ac3dc1b356f2" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> ShoppingCartItem : BaseEntity
+{
+    </span><span style="color: #0000ff">public</span> Product Product { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> Customer Customer { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span> Quantity { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// Product</p>
+<div class="cnblogs_code"><img id="code_img_closed_4018c0c0-5dc1-40cb-a713-0660dacab064" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_4018c0c0-5dc1-40cb-a713-0660dacab064" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_4018c0c0-5dc1-40cb-a713-0660dacab064" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Product : BaseEntity
+{
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">string</span> Title { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">decimal</span> Price { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// Order Item</p>
+<div class="cnblogs_code"><img id="code_img_closed_d4584315-24be-42c1-ad03-6216bcb508d0" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_d4584315-24be-42c1-ad03-6216bcb508d0" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_d4584315-24be-42c1-ad03-6216bcb508d0" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OrderItem : BaseEntity
+{
+    </span><span style="color: #0000ff">public</span> Product Product { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span> Quantity { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// Order</p>
+<div class="cnblogs_code"><img id="code_img_closed_7d68bf1c-3783-44ce-a16a-0160f82b5f02" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_7d68bf1c-3783-44ce-a16a-0160f82b5f02" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_7d68bf1c-3783-44ce-a16a-0160f82b5f02" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Order : BaseEntity
+{
+    </span><span style="color: #0000ff">public</span> IEnumerable&lt;OrderItem&gt; Items { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+    </span><span style="color: #0000ff">public</span> Customer Customer { <span style="color: #0000ff">get</span>; <span style="color: #0000ff">set</span><span style="color: #000000">; }
+
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>没有为购物车对象建立单独的实体，其实购物车没有任何其他的属性，我们就当它是一个ShoppingCartItem的集合好了。对于应用层来说我 ShoppingCartService 需要提供将 产品加入购物车的操作。</p>
+<p>// ShoppingCartService</p>
+<div class="cnblogs_code"><img id="code_img_closed_0c66fc72-12d7-4af0-bfea-eefa8f902fa0" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_0c66fc72-12d7-4af0-bfea-eefa8f902fa0" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_0c66fc72-12d7-4af0-bfea-eefa8f902fa0" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> ShoppingCartService:IShoppingCartService
+{
+    </span><span style="color: #0000ff">private</span> IRepository&lt;ShoppingCartItem&gt;<span style="color: #000000"> _shoppingCartItemRepository;
+
+    </span><span style="color: #0000ff">public</span> ShoppingCartService(IRepository&lt;ShoppingCartItem&gt;<span style="color: #000000"> shoppingCartItemRepository)
+    {
+        _shoppingCartItemRepository </span>=<span style="color: #000000"> shoppingCartItemRepository;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> AddToCart(Customer customer, Product product, <span style="color: #0000ff">int</span><span style="color: #000000"> quantity)
+    {
+        </span><span style="color: #0000ff">var</span> shoppingCartItem = <span style="color: #0000ff">new</span><span style="color: #000000"> ShoppingCartItem
+        {
+            Customer </span>=<span style="color: #000000"> customer,
+            Product </span>=<span style="color: #000000"> product,
+            Quantity </span>=<span style="color: #000000"> quantity,
+        };
+
+        _shoppingCartItemRepository.Insert(shoppingCartItem);
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>// OrderService</p>
+<div class="cnblogs_code"><img id="code_img_closed_f1873a74-542f-4578-ba81-f2a47455b8d1" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_f1873a74-542f-4578-ba81-f2a47455b8d1" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_f1873a74-542f-4578-ba81-f2a47455b8d1" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OrderService : IOrderService
+{
+    </span><span style="color: #0000ff">private</span> IRepository&lt;Order&gt;<span style="color: #000000"> _orderRepository;
+
+    </span><span style="color: #0000ff">public</span> OrderService(IRepository&lt;Order&gt;<span style="color: #000000"> orderRepository)
+    {
+        _orderRepository </span>=<span style="color: #000000"> orderRepository;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> InsertOrder(Order order)
+    {
+        _orderRepository.Insert(order);
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>最后，通过OrderFactory 通过ShoppingCart 来创建Order。</p>
+<p>// OrderFactory</p>
+<div class="cnblogs_code"><img id="code_img_closed_f3f0105d-3794-4049-ad99-45a8a7fb05db" class="code_img_closed" src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img id="code_img_opened_f3f0105d-3794-4049-ad99-45a8a7fb05db" class="code_img_opened" style="display: none" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_f3f0105d-3794-4049-ad99-45a8a7fb05db" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OrderFactory
+{
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> Order Create(IList&lt;ShoppingCartItem&gt;<span style="color: #000000"> ShoppingCart)
+    {
+        </span><span style="color: #0000ff">var</span> order = <span style="color: #0000ff">new</span><span style="color: #000000"> Order
+        {
+            Customer </span>=<span style="color: #000000"> ShoppingCart.First().Customer,
+            Items </span>= ShoppingCart.Select(item =&gt; <span style="color: #0000ff">new</span><span style="color: #000000"> OrderItem()
+            {
+                Product </span>=<span style="color: #000000"> item.Product,
+                Quantity </span>=<span style="color: #000000"> item.Quantity
+            })
+        };
+
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> order;
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+                    </div>
+                    <div class="thread_bottom">
+                        
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul id="thread_next_prev">
+<li>上一话题：<a href='/topic/70989.html' />之前我们讨论的例子的代码</a>            <li>下一话题：<a href='/topic/70888.html' />欢迎贴</a>        </ul>
+        <ul class="thread_item" id="thread_comment_list">
+                <li id="p_190091">
+                    <a name="190091"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/xishuai/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/435188/20130715165802.png" alt="田园里的蟋蟀" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 12:08">2014-08-21 12:08</span> <a href="//home.cnblogs.com/u/xishuai/">田园里的蟋蟀</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            <br/>Jesse兄，不好意思，过了那么长时间才回复，我按照顺序说一下我的理解：<br/><br/>首先是Jesse兄的三个困惑：<br/>1，领域服务需要接口吗？netfocus兄之前只是说尽量不用接口（并不是不需要），关于这个问题的答案，我的理解是，针对具体的业务用例需要，能不使用就尽量不要用，但是如果业务用例真的需要，那就使用（不是省事的问题），比如我之前讨论的发消息领域服务，如果把消息进行抽象出来，那发消息这个领域服务就必须设计成接口了，因为以后不只是发短消息，也可能发邮箱，发短信等等，这些都是消息的一种。<br/>2，领域服务里面适合用静态方法吗？不是适不适合的问题，我个人觉得要使用，因为领域服务就是无状态的，它只是表示业务用例的一个动作，没必要再创建一个访问对象。<br/>3，领域服务应该是尽量没有状态的，那里面是不是不应该把领域实体作为私有变量保存起来？看到这个问题我是有些迷糊，你后面举的一个示例非常好，这个一般我们都会用到，所以关于这个问题的答案，看下面。<br/><br/>我再阐述下Jesse兄描述的一个业务用例：往Order中插入OrderItem操作，UI中传入ProductId和Amount。<br/><br/>看到你上面的三个实体定义，需要知道的是“往Order中插入OrderItem操作"这个业务用例完成需要那些条件：<br/>1，因为Order属于User，所以插入之前，我们需要知道是哪个User？（可能还需要涉及到用户验证，当然这是另一部分的内容了）<br/>2，需要知道被插入的是哪个Order（可能会有Order和User的关联验证，就是说这个Order属于当前用户吗？）<br/>3，需要知道插入的是哪个Product（可能会有Product的一些验证，比如Product存在与否）<br/>4，针对Order中，OrderItem的一些验证操作（比如根据Amount是否超出限制）<br/>。。。。。<br/><br/>你会发现，其实一个简单的业务用例，会有很多的东西需要去思考，扯得有点多，我说一下重点。<br/><br/>我先说一下这个业务用例需不需要建领域服务，领域服务的作用是协调多个实体之间的关系，完成一个业务用例的动作，也就像netfocus兄之前所说，当一个实体完成不了的时候，那需要考虑为这个业务用例创建一个领域服务。<br/><br/>往Order中插入OrderItem操作，这个业务用例根据上面的分析，会涉及到很多的操作，Jesse兄所说：“如果我们把这个操作放在Order实体里面的话，那Order实体就需要调用Repository去把这个Product的实体对象查询出来"，其实我觉得应该把这个操作进行分化，比如根据ProductId获取Product，这个可以单独出来进行考虑，你可以在获取Product之后然后在Order中进行添加（之前的操作都属于Product的验证，可以进行公用）。<br/><br/>关于这个问题的答案，我觉得没必要去创建一个领域服务，往Order中插入OrderItem这个操作，我觉得放在Order实体中会比较好点，因为这就是属于它的职责，它自己就可以完成，当然前提是把上面所分析的进行细化。<br/><br/>说那么多，还不如写段伪代码（应用层）：<br/><br/>    /// <summary><br/>    /// Order管理应用层接口实现<br/>    /// </summary><br/>    public class OrderServiceImpl : IOrderService<br/>    {<br/>        public bool AddOrderItem(int userId,int orderId, int productId, int amount)<br/>        {<br/>            using (IRepositoryContext repositoryContext = new EntityFrameworkRepositoryContext())<br/>            {<br/>                IOrderRepository orderRepository = new OrderRepository(repositoryContext);<br/>                IProductRepository productRepository = new ProductRepository(repositoryContext);<br/><br/>                //之前会有User和Order的验证。。。<br/>                Order order = orderRepository.GetByKey(orderId);<br/>                Product product = productRepository.GetByKey(userId);<br/>                //之前会有对Product的一些验证，比如product.什么。。。又或者是领域服务<br/>                order.AddOrderItem(product, amount);<br/>                orderRepository.Update(order);<br/>            }<br/>        }<br/>    }<br/><br/>当然，Jesse兄看到上面的叙述和这段代码，我相信你肯定会有疑问，我在等着哦，希望和你多多交流。
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第1楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190092">
+                    <a name="190092"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/netfocus/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/13665/20190719142000.png" alt="netfocus" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 12:59">2014-08-21 12:59</span> <a href="//home.cnblogs.com/u/netfocus/">netfocus</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            1. 添加订单项这个业务场景是不需要领域服务的，应用层直接调用order.AddItem方法即可；<br/>2. 领域服务是服务，服务是无状态的；所以你的第一种做法显然不合理；<br/>3. 对于你的第二种做法，不需要人工new的，class也可以用ioc容易来注入；使用静态方法不是一个好的编程习惯；尽量不要使用静态方法，静态方法不容易扩展，以及实现多态；任何类或接口的实例，都可以由IOC容器来管理和注入到你要的地方；<br/>4.发现你代码上的一个不太好的地方，顺便提一下：<br/>var items = order.Items as ICollection&lt;OrderItem&gt;;<br/>items.Add(item);<br/>order.Items = items;<br/>上面第三句话不需要的，因为此时items和order.Items是同一个引用；<br/>5.如我第一点中的描述，orderItem是order聚合内的实体，对orderItem的任何操作都要通过order来，所以你的这两种做法都犯了一个错误，就是你都是在外部直接更新order.Items集合了。在DDD下，这是不允许的；这样做意味着order聚合无法保证自己的实体的不变性规则（比如一个order必须至少有一个orderItem）；所以正确的做法是：order提供AddItem方法，然后接收product, amount这两个参数，product在应用层获取。总体代码就和蟋蟀所写的一样；<br/>6.在应用层根据productId获取product不属于业务逻辑，这是在为执行业务逻辑做数据准备；<br/><br/>
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第2楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190094">
+                    <a name="190094"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 14:48">2014-08-21 14:48</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @田园里的蟋蟀<br/>是的，如你所料，肯定有疑问。:) 我的理解是应用层不该设计到领域业务逻辑。<br/><br/>1. 为什么AddOrderItem方法里面要传入userId? Order里面已经有User的属性了， order.User= currentUser() 不是更好么？<br/><br/>2. 如果我们考虑新建订单，那我们应该还没有orderId，这个order应该是才new出来的。 如果是修改的状态的话，order实体里面应该也已经有了这个id。 所以orderId这个参数应该是不需要的。<br/><br/>3. 我想可能是我的问题把你带到弯路上去了，我觉得在应用层是不会存在AddOrderItem这样的操作的，要么是AddOrder(Order order)或者是UpdateOrder(Order order)。<br/><br/>这么一看，我倒是觉得AddOrderItem确实应该放到Order实体中，而不是应该建领域服务。 因为从我们这里的领域来讲，是不会有AddOrderItem这个操作的，这是程序员的思维。 难怪我觉得有点怪异。。。。<br/><br/>我们来看一线真是购物的逻辑：<br/>用户进到网站-》看中一件商品-》把该商品加入购物车—》进入购物车结算-》 订单确认。<br/>完全从领域的角度来分析，Order这个实体应该是从购物车转换而来的，而添加Item这个操作应该是在购物车中添加商品，而不是这直接在订单中添加商品。<br/><br/>假设我们把你上面的代码中的OrderServiceImp 换成ShoppingCartServiceImp， AddOrderItem()方法换成 AddToCart方法。<br/>// <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第3楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190095">
+                    <a name="190095"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 14:49">2014-08-21 14:49</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            // ShoppingCartService 的代码<br/><br/>public class ShoppingCartService:IShoppingCartService<br/>{<br/>    private IRepository&lt;ShoppingCartItem&gt; _shoppingCartItemRepository;<br/><br/>    public ShoppingCartService(IRepository&lt;ShoppingCartItem&gt; shoppingCartItemRepository)<br/>    {<br/>        _shoppingCartItemRepository = shoppingCartItemRepository;<br/>    }<br/><br/>    public void AddToCart(Customer customer, Product product, int quantity)<br/>    {<br/>        var shoppingCartItem = new ShoppingCartItem<br/>        {<br/>            Customer = customer,<br/>            Product = product,<br/>            Quantity = quantity,<br/>        };<br/><br/>        _shoppingCartItemRepository.Insert(shoppingCartItem);<br/>    }<br/>}
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第4楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190096">
+                    <a name="190096"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 14:53">2014-08-21 14:53</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @netfocus<br/> 点评的非常有道理！我也非常同意你说的第6点，在应用层根据productId获取product不属于业务逻辑，这是在为执行业务逻辑做数据准备；
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第5楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190098">
+                    <a name="190098"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/xishuai/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/435188/20130715165802.png" alt="田园里的蟋蟀" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 15:19">2014-08-21 15:19</span> <a href="//home.cnblogs.com/u/xishuai/">田园里的蟋蟀</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @Jesse Liu<br/><br/>:) <br/><br/>Jesse兄后面的叙述非常好，我很赞同，购物的真实场景就是你所描述的那样，换成ShoppingCart确实舒服多了，我再按照顺序说下我自己的理解。<br/><br/>1，为什么AddOrderItem方法里面要传入userId?这个写错了，伪代码中应该是productId。<br/>2，这个问题我当时确实没有考虑全面，如果把order换成ShoppingCart就很容易理解了，orderId也确实不需要传入。<br/>3，针对第三个问题，我觉得还是用代码表述一下会比较好：<br/><br/>public void AddToCart(Customer customer, Product product, int quantity)<br/>{<br/>var shoppingCartItem = new ShoppingCartItem<br/>{<br/>Customer = customer,<br/>Product = product,<br/>Quantity = quantity,<br/>};<br/><br/>_shoppingCartItemRepository.Insert(shoppingCartItem);<br/><br/>ShoppingCartService应用服务中的这几段代码，我是有几点疑问的：<br/><br/>1，AddToCart这个方法表示往购物车中添加商品，首先，看一下参数customer和product（quantity没什么问题），排除用户customer这个因素，product这个参数我觉得有点问题，应用层的代码表示整个应用的流程，product这个从哪里来？难道是UI获取到Product，然后再调用AddToCart？<br/>2，如果是AddToCart这种设计，Customer，Product这些领域概念就会暴露在UI中，解决方式有两种：扁平化（比如只传标识）和DTO<br/>3，最重要的是，在AddToCart中我看不到处理流程，应用层的代码虽然追求简单，但是也不能只包含创建对象，然后添加对象。我所说的不是在应用层中实现业务逻辑，而是体现业务逻辑，它可以不知道具体是怎么实现的，但是它要知道领域做了什么，体现出来的就是业务用例。<br/><br/>关于这个业务用例的实现，首先，我觉得 AddToCart 的参数设计非常重要，因为将影响内部的实现，还有就是内部的业务用例体现（可以理解为工作流程），这个怎么进行设计？最后就是具体的业务逻辑实现了（这个最为重要）。这三点做好了，这个业务用例也就完成了。<br/><br/>很抱歉，以上说的都是大白话，没有任何实际意义，希望给Jesse兄带点启示，我再思考下。。。
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第6楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190101">
+                    <a name="190101"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 16:02">2014-08-21 16:02</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @田园里的蟋蟀<br/>有道理 :) <br/>所以AddToCart方法，应该是接受productId， 同时我在ShoppingCartItem加了一个 ProductId的属性。添加的时候确实不需要Product的任何属性，考虑到即使购物车表里面也只会存一个productId。<br/><br/> public void AddToCart(Customer customer, object productId, int quantity)<br/>        {<br/>            var shoppingCartItem = new ShoppingCartItem<br/>            {<br/>                Customer = customer,<br/>                ProductId = productId,<br/>                Quantity = quantity,<br/>            };<br/><br/>            _shoppingCartItemRepository.Insert(shoppingCartItem);<br/>        }<br/><br/>我通过OrderFactory来创建订单：<br/>    public class OrderFactory<br/>    {<br/>        private IRepository<Product> _productRepository;<br/>        public OrderFactory(IRepository<Product> productRepository)<br/>        {<br/>            _productRepository = productRepository;<br/>        }<br/><br/>        public virtual Order Create(IList<ShoppingCartItem> ShoppingCart)<br/>        {<br/>            var order = new Order<br/>            {<br/>                Customer = ShoppingCart.First().Customer,<br/>                Items = ShoppingCart.Select(item => new OrderItem()<br/>                {<br/>                    Product = _productRepository.GetById(item.ProductId),<br/>                    Quantity = item.Quantity<br/>                })<br/>            };<br/><br/>            return order;<br/>        }<br/>    }
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第7楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190104">
+                    <a name="190104"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/netfocus/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/13665/20190719142000.png" alt="netfocus" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 16:50">2014-08-21 16:50</span> <a href="//home.cnblogs.com/u/netfocus/">netfocus</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            为啥评论不支持代码高亮呢？
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第8楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190106">
+                    <a name="190106"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/netfocus/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/13665/20190719142000.png" alt="netfocus" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 17:16">2014-08-21 17:16</span> <a href="//home.cnblogs.com/u/netfocus/">netfocus</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            完全思路错误呀！为啥会有_shoppingCartItemRepository？shopping cartitem是聚合根？购物车的例子，明显是购物车才是聚合根呀，只有聚合根才有repository的呀。我也写一段伪代码吧：<br/>public class ShoppingCartAppService<br/>{<br/>	//添加商品到购物车，添加时商品数量总是为1，现实生活中就是这样<br/>	public void AddCartItem(string cartId, string productId)<br/>	{<br/>		using (var uow = _uowManager.GetUnitOfWork())<br/>		{<br/>			var cart = _cartRepository.Load(cartId);<br/>			var product = _productRepository.Load(productId);<br/>			cart.AddItem(product);<br/>			uow.CommitChanges();<br/>		}<br/>	}<br/>	//修改购物车中某个商品的数量<br/>	public void UpdateCartItemAmount(string cartId, string productId, int newAmount)<br/>	{<br/>		using (var uow = _uowManager.GetUnitOfWork())<br/>		{<br/>			var cart = _cartRepository.Load(cartId);<br/>			cart.ChangeItemAmount(productId, newAmount);<br/>			uow.CommitChanges();<br/>		}<br/>	}<br/>}<br/>
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第9楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190107">
+                    <a name="190107"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/netfocus/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/13665/20190719142000.png" alt="netfocus" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 17:19">2014-08-21 17:19</span> <a href="//home.cnblogs.com/u/netfocus/">netfocus</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            上面这两个方法，中提现在执行业务逻辑的地方就是：<br/>cart.AddItem(product);<br/>cart.ChangeItemAmount(productId, newAmount);<br/>这两处了。<br/>
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第10楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190108">
+                    <a name="190108"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 17:34">2014-08-21 17:34</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @netfocus<br/>回复的时候不能代码高亮。。。。 <br/>不一定要入购物车的时候数量一定是1哦，现在的购物网站在添加到购物车的时候就可以选择数量了。 当然ChangeItemAmount还是需要的。 <br/><br/>关于【 为啥会有_shoppingCartItemRepository？shopping cartitem是聚合根？购物车的例子，明显是购物车才是聚合根呀，只有聚合根才有repository的呀。】<br/><br/>um... 这个Repository如果仅仅是在Application 层的Service里面使用，也需要遵守这个准则么？我之前的想法是，这个ShoppingCart没有任何其他的属性，它就是ShoppingCartItem的集合，所以没有建立ShoppingCart的实体。<br/><br/> 看来你是对的，如果我们真要DDD的话，就应该建立ShoppingCart的实体，然后把对应的操作放到这个实体中。 这样才能把领域相关的操作都放到领域模型中。  受教了。
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第11楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190109">
+                    <a name="190109"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/liubiaocai/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/u36499.jpg?id=30171922" alt="刘标才" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 17:36">2014-08-21 17:36</span> <a href="//home.cnblogs.com/u/liubiaocai/">刘标才</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            1、领域服务最好是不要接口，因为领域服务本身是一个协调作用，没有或者很少具体实现的代码；<br/>2、领域服务最好是不要静态方法，否则扩展很麻烦，这个是重点<br/>3、既然领域服务是无状态了，那就根本不存在实体对象的引用了吧，总之领域服务不可能有public的属性
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第12楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190111">
+                    <a name="190111"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 17:39">2014-08-21 17:39</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @netfocus<br/>@刘标才<br/><br/>两位应该加入我们这个组，我之前说到要邀请netfocus加入的，好像忘记发消息了。 :)<br/><br/>
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第13楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190117">
+                    <a name="190117"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/netfocus/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/13665/20190719142000.png" alt="netfocus" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 18:01">2014-08-21 18:01</span> <a href="//home.cnblogs.com/u/netfocus/">netfocus</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            我刚刚自己加入了。
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第14楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190118">
+                    <a name="190118"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/jesse2013/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/554526/20131126113744.png" alt="Jesse Liu" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-21 18:10">2014-08-21 18:10</span> <a href="//home.cnblogs.com/u/jesse2013/">Jesse Liu</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            @netfocus<br/>欢迎，欢迎!
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第15楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190133">
+                    <a name="190133"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/xishuai/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/435188/20130715165802.png" alt="田园里的蟋蟀" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-08-22 10:00">2014-08-22 10:00</span> <a href="//home.cnblogs.com/u/xishuai/">田园里的蟋蟀</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            netfocus兄的那段伪代码不错，在这个例子中除了购物车是聚合根，商品也是聚合根（productRepository）。
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第16楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li id="p_190703">
+                    <a name="190703"></a>
+                    <div class="thread_block">
+                        <a href="//home.cnblogs.com/u/Chinese-xu/" class="avatar48 thread_item_avatar">
+                            <img src="//pic.cnblogs.com/face/sample_face.gif" alt="徐少侠" />
+                        </a>
+                        <div class="thread_author_block">
+                            <span class="text_green" title="2014-10-09 11:46">2014-10-09 11:46</span> <a href="//home.cnblogs.com/u/Chinese-xu/">徐少侠</a>
+                        </div>
+                        <div class="thread_comment_content">
+                            加入小组<br/>呵呵<br/>找到讨论DDD的不容易
+                        </div>
+                        <div class="thread_bottom">
+                             <span class='text_gray'>第17楼</span> <a href="#top">
+                                <img align="absmiddle" class="top" alt="回到顶楼" src="/images/icon_up_gray.gif" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+        </ul>
+                <div id="thread_bottom_ad">
+            <script type='text/javascript'>
+                var replyCount = 17;
+            </script>
+        </div>
+            <div id="panel_unLogin">
+                <div class="group_topic_block text_gray group_empty_tip" id="thread_login_tip">
+                    登录后才能评论，请先<a href="javascript:;" onclick="login();return false;">登录</a>或<a href="javascript:;" onclick="register();return false;">注册</a>。
+                    <br /><br /><br />
+                </div>
+            </div>
+    </div>
+</div>
+                </div>
+                <div id="right_sidebar">
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="footer">
+            <a href="//www.cnblogs.com/AboutUS.aspx">关于博客园</a><a href="//www.cnblogs.com/ContactUs.aspx">联系我们</a><a href="//www.cnblogs.com/ad.aspx">广告服务</a>&copy; 2004-2020 <a href="http://www.cnblogs.com">博客园</a><span id="powered_by">Powered by .NET Core on Kubernetes</span><span id="profiler_footer"></span>
+        </div>
+    </div>
+</body>
+</html>

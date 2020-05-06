@@ -1,0 +1,10 @@
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\bin\Debug\Crawler - Winform.exe.config
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\bin\Debug\Crawler - Winform.exe
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\bin\Debug\Crawler - Winform.pdb
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler - Winform.csprojAssemblyReference.cache
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler___Winform.Form1.resources
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler___Winform.Properties.Resources.resources
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler - Winform.csproj.GenerateResource.cache
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler - Winform.csproj.CoreCompileInputs.cache
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler - Winform.exe
+E:\大二下\软件构造基础\tongyuan\CSharpHomework\Week 10\爬虫 - Winform（多线程）\Crawler - Winform\obj\Debug\Crawler - Winform.pdb
