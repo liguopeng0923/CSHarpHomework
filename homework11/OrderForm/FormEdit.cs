@@ -15,9 +15,13 @@ namespace OrderForm {
 
     public FormEdit() {
       InitializeComponent();
-      customerBindingSource.Add(new Customer("1", "li"));
-      customerBindingSource.Add(new Customer("2", "zhang"));
-
+      List<Customer> customers= CustomerService.GetAll();
+      if (customers.Count == 0) {
+        CustomerService.Add(new Customer("li"));
+        CustomerService.Add(new Customer("zhang"));
+        customers = CustomerService.GetAll();
+      }
+      customerBindingSource.DataSource = customers;
     }
 
     public FormEdit(Order order, bool editMode = false) : this() {
@@ -34,7 +38,7 @@ namespace OrderForm {
       FormItemEdit formItemEdit = new FormItemEdit(new OrderItem());
       try {
         if (formItemEdit.ShowDialog() == DialogResult.OK) {
-          uint index = 0;
+          int index = 0;
           if (CurrentOrder.Items.Count != 0) {
             index = CurrentOrder.Items.Max(i => i.Index) + 1;
           }
@@ -49,6 +53,14 @@ namespace OrderForm {
 
     private void btnSave_Click(object sender, EventArgs e) {
       //TODO 加上订单合法性验证
+      CurrentOrder.CustomerId = CurrentOrder.Customer.ID;
+      CurrentOrder.Customer = null;
+      CurrentOrder.Items.ForEach(item => {
+        item.GoodsItemId = item.GoodsItem.ID;
+        item.GoodsItem = null;
+        item.OrderId = CurrentOrder.Id;
+      });
+
       this.Close();
     }
 
@@ -82,9 +94,6 @@ namespace OrderForm {
       itemsBindingSource.ResetBindings(false);
     }
 
-        private void FormEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-    }
+   
+  }
 }

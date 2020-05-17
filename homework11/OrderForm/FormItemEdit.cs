@@ -20,8 +20,13 @@ namespace OrderForm {
     public FormItemEdit(OrderItem orderItem):this() {
       this.OrderItem = orderItem;
       this.ItemBindingSource.DataSource = orderItem;
-      goodsBindingSource.Add(new Goods("1", "apple", 100.0));
-      goodsBindingSource.Add(new Goods("2", "egg", 200.0));
+      List<Goods> goods = GoodsService.GetAll();
+      if (goods.Count == 0) {
+        GoodsService.Add(new Goods("apple", 100.0));
+        GoodsService.Add(new Goods("egg", 200.0));
+        goods= GoodsService.GetAll();
+      }
+      goodsBindingSource.DataSource = goods;
     }
 
     private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {

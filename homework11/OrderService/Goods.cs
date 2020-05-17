@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OrderApp {
   public class Goods {
+    [Key]
     public string ID { get; set; }
     public string Name { get; set; }
     public double Price { get; set; }
@@ -13,8 +15,8 @@ namespace OrderApp {
     public Goods() {
     }
 
-    public Goods(string iD, string name, double price) {
-      ID = iD;
+    public Goods(string name, double price) {
+      ID = Guid.NewGuid().ToString();
       Name = name;
       Price = price;
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,27 +12,36 @@ namespace OrderApp {
    **/
   public class OrderItem {
 
-    public uint Index { get; set; } //序号
+    [Key]
+    public string Id { get; set; }
 
+    public int Index { get; set; } //序号
+
+    public string GoodsItemId { get; set; }
+
+    [ForeignKey("GoodsItemId")]
     public Goods GoodsItem { get; set; }
 
-    public String GoodsName { get => GoodsItem!=null? this.GoodsItem.Name:""; }
+    public String GoodsName { get => GoodsItem != null ? this.GoodsItem.Name : ""; }
 
     public double UnitPrice { get => GoodsItem != null ? this.GoodsItem.Price : 0.0; }
 
+    public string OrderId { get; set; }
 
-    public uint Quantity { get; set; }
+    public int Quantity { get; set; }
 
-    public OrderItem() { }
+    public OrderItem() {
+      Id = Guid.NewGuid().ToString();
+    }
 
-    public OrderItem(uint index, Goods goods, uint quantity) {
+    public OrderItem(int index, Goods goods, int quantity) : this() {
       this.Index = index;
       this.GoodsItem = goods;
       this.Quantity = quantity;
     }
 
     public double TotalPrice {
-      get => GoodsItem==null?0.0: GoodsItem.Price * Quantity;
+      get => GoodsItem == null ? 0.0 : GoodsItem.Price * Quantity;
     }
 
     public override string ToString() {

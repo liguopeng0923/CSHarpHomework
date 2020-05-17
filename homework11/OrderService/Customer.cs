@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OrderApp {
   public class Customer {
+    [Key]
     public string ID { get; set; }
     public string Name { get; set; }
 
     public Customer() {
+      ID = Guid.NewGuid().ToString();
     }
 
-    public Customer(string iD, string name) {
-      ID = iD;
+    public Customer(string name):this() {
       Name = name;
     }
 

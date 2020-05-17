@@ -12,20 +12,19 @@ using System.Windows.Forms;
 
 namespace OrderForm {
   public partial class FormMain : Form {
-    OrderService orderService;
     BindingSource fieldsBS = new BindingSource();
     public String Keyword { get; set; }
 
     public FormMain() {
       InitializeComponent();
-      orderService = new OrderService();
-      Order order = new Order(1, new Customer("1", "li"), new List<OrderItem>());
-      order.AddItem(new OrderItem(1, new Goods("1", "apple", 100.0), 10));
-      orderService.AddOrder(order);
-      Order order2 = new Order(2, new Customer("2", "zhang"), new List<OrderItem>());
-      order2.AddItem(new OrderItem(1, new Goods("2", "egg", 200.0), 10));
-      orderService.AddOrder(order2);
-      orderBindingSource.DataSource = orderService.Orders;
+      //Order order = new Order(1, new Customer("1", "li"), new List<OrderItem>());
+      //order.AddItem(new OrderItem(1, new Goods("1", "apple", 100.0), 10));
+      //order.AddItem(new OrderItem(1, new Goods("2", "egg", 50.0), 61));
+      //orderService.AddOrder(order);
+      //Order order2 = new Order(2, new Customer("2", "zhang"), new List<OrderItem>());
+      //order2.AddItem(new OrderItem(1, new Goods("2", "egg", 200.0), 10));
+      //orderService.AddOrder(order2);
+      orderBindingSource.DataSource = OrderService.GetAllOrders();
       cbField.SelectedIndex = 0;
       txtValue.DataBindings.Add("Text", this, "Keyword");
     }
@@ -33,13 +32,13 @@ namespace OrderForm {
     private void btnAdd_Click(object sender, EventArgs e) {
       FormEdit form2 = new FormEdit(new Order());
       if (form2.ShowDialog() == DialogResult.OK) {
-        orderService.AddOrder(form2.CurrentOrder);
+        OrderService.AddOrder(form2.CurrentOrder);
         QueryAll();
       }
     }
 
     private void QueryAll() {
-      orderBindingSource.DataSource = orderService.Orders;
+      orderBindingSource.DataSource = OrderService.GetAllOrders();
       orderBindingSource.ResetBindings(false);
     }
 
@@ -55,9 +54,10 @@ namespace OrderForm {
         MessageBox.Show("请选择一个订单进行修改");
         return;
       }
+      order = OrderService.GetOrder(order.Id); //查询出最新的订单信息
       FormEdit form2 = new FormEdit(order, true);
       if (form2.ShowDialog() == DialogResult.OK) {
-        orderService.UpdateOrder(form2.CurrentOrder);
+        OrderService.UpdateOrder(form2.CurrentOrder);
         QueryAll();
       }
     }
@@ -68,7 +68,7 @@ namespace OrderForm {
         MessageBox.Show("请选择一个订单进行删除");
         return;
       }
-      orderService.RemoveOrder(order.OrderId);
+      OrderService.RemoveOrder(order.Id);
       QueryAll();
     }
 
@@ -76,7 +76,7 @@ namespace OrderForm {
       DialogResult result = saveFileDialog1.ShowDialog();
       if (result.Equals(DialogResult.OK)) {
         String fileName = saveFileDialog1.FileName;
-        orderService.Export(fileName);
+        OrderService.Export(fileName);
       }
     }
 
@@ -84,7 +84,7 @@ namespace OrderForm {
       DialogResult result = openFileDialog1.ShowDialog();
       if (result.Equals(DialogResult.OK)) {
         String fileName = openFileDialog1.FileName;
-        orderService.Import(fileName);
+        OrderService.Import(fileName);
         QueryAll();
       }
     }
@@ -92,34 +92,30 @@ namespace OrderForm {
     private void btnQuery_Click(object sender, EventArgs e) {
       switch (cbField.SelectedIndex) {
         case 0://所有订单
-          orderBindingSource.DataSource =orderService.Orders;
+          orderBindingSource.DataSource = OrderService.GetAllOrders();
           break;
         case 1://根据ID查询
-          int.TryParse(Keyword, out int id);
-          Order order = orderService.GetOrder((uint)id);
+          Order order = OrderService.GetOrder(Keyword);
           List<Order> result = new List<Order>();
           if (order != null) result.Add(order);
           orderBindingSource.DataSource = result;
           break;
         case 2://根据客户查询
-          orderBindingSource.DataSource =orderService.QueryOrdersByCustomerName(Keyword);
+          orderBindingSource.DataSource = OrderService.QueryOrdersByCustomerName(Keyword);
           break;
         case 3://根据货物查询
-          orderBindingSource.DataSource =orderService.QueryOrdersByGoodsName(Keyword);
+          orderBindingSource.DataSource = OrderService.QueryOrdersByGoodsName(Keyword);
           break;
         case 4://根据总价格查询（大于某个总价）
           float.TryParse(Keyword,  out float totalPrice);
           orderBindingSource.DataSource =
-                 orderService.QueryByTotalAmount(totalPrice);
+                 OrderService.QueryByTotalAmount(totalPrice);
           break;
       }
       orderBindingSource.ResetBindings(true);
 
     }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-    }
+ 
+  }
 }
