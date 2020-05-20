@@ -1,129 +1,239 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace OrderApp {
+namespace OrderApp
+{
 
-  /**
-   * The service class to manage orders
-   * */
-  public class OrderService {
+    /**
+     * The service class to manage orders
+     * */
+    public class OrderService
+    {
 
-    public OrderService() {
-    }
+        private List<Order> orders;
 
-    public static List<Order> GetAllOrders() {
-      using (var db = new OrderContext()) {
-        return AllOrders(db).ToList();
-      }
-    }
-
-    public static Order GetOrder(string id) {
-      using (var db = new OrderContext()) {
-        return AllOrders(db).FirstOrDefault(o => o.Id == id);
-      }
-    }
-
-    public static Order AddOrder(Order order) {
-      try {
-        using (var db = new OrderContext()) {
-          db.Orders.Add(order);
-          db.SaveChanges();
+        public List<Order> Orders { get => orders; set => orders = value; }
+        public OrderService()
+        {
+          
+            Orders = new List<Order>();
+            using (var context=new OrderContext())
+            {
+                foreach(Order order in context.orders)
+                {
+                    this.Orders.Add(order);
+                }
+            }
         }
-        return order;
-      }
-      catch (Exception e) {
-        //TODO 需要更加错误类型返回不同错误信息
-        throw new ApplicationException($"添加错误: {e.Message}");
-      }
-    }
 
-    public static void RemoveOrder(string id) {
-      try {
-        using (var db = new OrderContext()) {
-          var order = db.Orders.Include("Items").Where(o => o.Id == id).FirstOrDefault();
-          db.Orders.Remove(order);
-          db.SaveChanges();
+        public static List<Order> GetAllOrders()
+        {
+            using (var context = new OrderContext())
+            {
+                return AllOrders(context).ToList();
+            }
         }
-      }
-      catch (Exception e) {
-        //TODO 需要更加错误类型返回不同错误信息
-        throw new ApplicationException($"删除订单错误!");
-      }
+
+        public  Order GetOrder(string id)
+        {
+            using (var context = new OrderContext()) { 
+            
+                return AllOrders(context).FirstOrDefault(o => o.OrderId == id);
+            }
+        }
+        
+        public Order AddOrder(Order order1)
+        {
+            this.Orders.Add(order1);
+            try
+            {
+                using (var context = new OrderContext())
+                {
+                    
+                    context.orders.Add(order1);
+                    context.SaveChanges();
+                }
+                return order1;
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                //TODO 需要更加错误类型返回不同错误信息
+                throw new ApplicationException($"添加错误: {dbEx.Message}");
+            }
+        }
+
+        //删除订单
+        public void DeleteOrder(string ID)
+        {
+            using (var context = new OrderContext())
+            {
+                foreach (Order order in context.orders)
+                {
+                    if (order.OrderId == ID)
+                    {
+                        Orders.Remove(order);
+                        context.orders.Remove(order);
+                        
+                    }
+                }
+                context.SaveChanges();
+            }
+            
+        }
+
+        public Order SearchByID(string ID)
+        {
+            var query = Orders
+                    .Where(order => order.OrderId==ID)
+                    .OrderBy(o => o.TotalPrice);
+            return query.ToList().First();
+        }
+
+        public List<Order> QueryOrdersByGoodsName(string goodsName)
+        {
+            var query = Orders
+                    .Where(order => order.Items.Exists(item => item.GoodsName == goodsName))
+                    .OrderBy(o => o.TotalPrice);
+            return query.ToList();
+        }
+
+        public List<Order> QueryOrdersByCustomerName(string customerName)
+        {
+            return Orders
+                .Where(order => order.CustomerName == customerName)
+                .OrderBy(o => o.TotalPrice)
+                .ToList();
+        }
+
+        public void UpdateOrder(Order newOrder)
+        {
+            deleteItems(newOrder.OrderId);
+
+            using (var context = new OrderContext())
+            {
+                context.Entry(newOrder).State = EntityState.Modified;
+                context.orderItems.AddRange(newOrder.Items);
+                context.SaveChanges();
+
+            }
+        }
+
+        private static void deleteItems(string orderId)
+        {
+            using (var db = new OrderContext())
+            {
+                var oldItems = db.orderItems.Where(item => item.OrderId == orderId);
+                db.orderItems.RemoveRange(oldItems);
+                db.SaveChanges();
+            }
+        }
+
+        private static IQueryable<Order> AllOrders(OrderContext context)
+        {
+            return context.orders.Include(o => o.Items.Select(i => i.GoodsItem))
+                      .Include("Customer");
+        }
+
+
+        //删除订单明细
+        public void DeleteOrderItem(OrderItem orderItem)
+        {
+            using (var context = new OrderContext())
+            {
+                context.orderItems.Remove(orderItem);
+                context.SaveChanges();
+            }
+
+        }
+
+        public void Sort()
+        {
+            Orders.Sort();
+        }
+
+        public void Sort(Func<Order, Order, int> func)
+        {
+            Orders.Sort((o1, o2) => func(o1, o2));
+        }
+
+        public void Export(String fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            {
+                xs.Serialize(fs, Orders);
+            }
+        }
+
+        public void Import(string path)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                List<Order> temp = (List<Order>)xs.Deserialize(fs);
+                temp.ForEach((Action<Order>)(order =>
+                {
+                    if (!this.Orders.Contains(order))
+                    {
+                        this.Orders.Add(order);
+                    }
+                }));
+            }
+        }
+
+        public object QueryByTotalAmount(float amout)
+        {
+            return Orders
+               .Where(order => order.TotalPrice >= amout)
+               .OrderByDescending(o => o.TotalPrice)
+               .ToList();
+        }
+
+        public static void AddGood(Goods goods)
+        {
+            try
+            {
+                using (var context = new OrderContext())
+                {
+                    context.GoodItems.Add(goods);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                //TODO 需要更加错误类型返回不同错误信息
+                throw new ApplicationException($"添加错误!");
+            }
+        }
+
+        public static List<Goods> GetAll()
+        {
+            using (var context = new OrderContext())
+            {
+                return context.GoodItems.ToList();
+            }
+        }
+
+        public static void AddCustomer(Customer customer)
+        {
+            try
+            {
+                using (var db = new OrderContext())
+                {
+                    db.Customers.Add(customer);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                //TODO 需要更加错误类型返回不同错误信息
+                throw new ApplicationException($"添加错误!");
+            }
+        }
     }
-
-    public static void UpdateOrder(Order newOrder) {
-      RemoveItems(newOrder.Id);
-      using (var db = new OrderContext()) {
-        db.Entry(newOrder).State = EntityState.Modified;
-        db.OrderItems.AddRange(newOrder.Items);
-        db.SaveChanges();
-      }
-    }
-
-    private static void RemoveItems(string orderId) {
-      using (var db = new OrderContext()) {
-        var oldItems = db.OrderItems.Where(item => item.OrderId == orderId);
-        db.OrderItems.RemoveRange(oldItems);
-        db.SaveChanges();
-      }
-    }
-
-    public static List<Order> QueryOrdersByGoodsName(string goodsName) {
-      using (var db = new OrderContext()) {
-        var query = AllOrders(db)
-          .Where(o => o.Items.Count(i => i.GoodsItem.Name == goodsName) > 0);
-        return query.ToList();
-      }
-    }
-
-    public static List<Order> QueryOrdersByCustomerName(string customerName) {
-      using (var db = new OrderContext()) {
-        var query = AllOrders(db)
-          .Where(o => o.Customer.Name == customerName);
-        return query.ToList();
-      }
-    }
-
-    public static object QueryByTotalAmount(float amout) {
-      using (var db = new OrderContext()) {
-        return AllOrders(db)
-          .Where(o => o.Items.Sum(item => item.GoodsItem.Price * item.Quantity) > amout)
-          .ToList();
-      }
-    }
-
-    private static IQueryable<Order> AllOrders(OrderContext db) {
-      return db.Orders.Include(o => o.Items.Select(i => i.GoodsItem))
-                .Include("Customer");
-    }
-
-    public static void Export(String fileName) {
-      XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
-      using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
-        xs.Serialize(fs, GetAllOrders());
-      }
-    }
-
-    public static void Import(string path) {
-      XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
-      using (FileStream fs = new FileStream(path, FileMode.Open)) {
-        List<Order> temp = (List<Order>)xs.Deserialize(fs);
-        temp.ForEach(order => {
-          try {
-            AddOrder(order);
-          }catch {
-            //ignore errors
-          }
-        });
-      }
-    }
-
-
-
-
-  }
 }
