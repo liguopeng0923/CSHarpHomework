@@ -16,7 +16,7 @@ namespace OrderApp
     {
 
         private List<OrderItem> items { get; set; }
-        
+
         [Key]
         public string OrderId { get; set; }
 

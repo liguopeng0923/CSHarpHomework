@@ -20,15 +20,7 @@ namespace OrderApp
         public List<Order> Orders { get => orders; set => orders = value; }
         public OrderService()
         {
-          
-            Orders = new List<Order>();
-            using (var context=new OrderContext())
-            {
-                foreach(Order order in context.orders)
-                {
-                    this.Orders.Add(order);
-                }
-            }
+            this.orders = GetAllOrders();
         }
 
         public static List<Order> GetAllOrders()
@@ -46,7 +38,17 @@ namespace OrderApp
                 return AllOrders(context).FirstOrDefault(o => o.OrderId == id);
             }
         }
-        
+
+        /*
+
+        public Order GetOrder(string id)
+        {
+            var query = Orders
+                    .Where(order => order.OrderId == id)
+                    .OrderBy(o => o.TotalPrice);
+            return query as Order;
+        }*/
+
         public Order AddOrder(Order order1)
         {
             this.Orders.Add(order1);
@@ -72,16 +74,11 @@ namespace OrderApp
         {
             using (var context = new OrderContext())
             {
-                foreach (Order order in context.orders)
-                {
-                    if (order.OrderId == ID)
-                    {
-                        Orders.Remove(order);
-                        context.orders.Remove(order);
-                        
-                    }
-                }
+                var order = context.orders.Include("Items").Where(o =>o.OrderId == ID).FirstOrDefault();
+                this.orders.Remove(order);
+                context.orders.Remove(order);
                 context.SaveChanges();
+
             }
             
         }
